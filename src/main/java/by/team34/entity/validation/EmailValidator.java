@@ -6,15 +6,15 @@ import javax.validation.ConstraintValidatorContext;
 public class EmailValidator implements ConstraintValidator<Email, String> {
 
     @Override
-    public void initialize(Email paramA) {}
+    public final void initialize(Email paramA) {
+    }
 
     @Override
-    public boolean isValid(String email, ConstraintValidatorContext ctx) {
-        if(email == null){
+    public final boolean isValid(final String email, final ConstraintValidatorContext ctx) {
+        if (email == null) {
             return false;
         }
-        if (email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")) return true;
-        else return false;
+        return email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$");
     }
 
 }

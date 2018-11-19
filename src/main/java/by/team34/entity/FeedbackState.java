@@ -1,6 +1,12 @@
 package by.team34.entity;
 
-import javax.persistence.*;
+import javax.persistence.OneToMany;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.FetchType;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,22 +21,22 @@ public class FeedbackState {
     @OneToMany(mappedBy = "feedbackState", fetch = FetchType.LAZY)
     private Set<CandidateFeedback> candidateFeedbacks;
 
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public final void setName(final String name) {
         this.name = name;
     }
 
-    public Set<CandidateFeedback> getCandidateFeedbacks() {
+    public final Set<CandidateFeedback> getCandidateFeedbacks() {
         if (this.candidateFeedbacks == null) {
             this.candidateFeedbacks = new HashSet<CandidateFeedback>();
         }
         return candidateFeedbacks;
     }
 
-    public void setCandidateFeedbacks(Set<CandidateFeedback> candidateFeedbacks) {
+    public final void setCandidateFeedbacks(final Set<CandidateFeedback> candidateFeedbacks) {
         this.candidateFeedbacks = candidateFeedbacks;
     }
 }

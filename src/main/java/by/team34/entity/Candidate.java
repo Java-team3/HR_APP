@@ -2,10 +2,24 @@ package by.team34.entity;
 
 import by.team34.entity.validation.Name;
 
-import javax.persistence.*;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
+
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -67,128 +81,128 @@ public class Candidate {
     private Set<VacancyCandidate> vacancyCandidates;
 
 
-    public int getId() {
+    public final int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public final void setId(final int id) {
         this.id = id;
     }
 
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public final void setName(final String name) {
         this.name = name;
     }
 
-    public String getSurname() {
+    public final String getSurname() {
         return surname;
     }
 
-    public void setSurname(String surname) {
+    public final void setSurname(final String surname) {
         this.surname = surname;
     }
 
-    public Date getBirthday() {
+    public final Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public final void setBirthday(final Date birthday) {
         this.birthday = birthday;
     }
 
-    public double getSalary() {
+    public final double getSalary() {
         return salary;
     }
 
-    public void setSalary(double salary) {
+    public final void setSalary(final double salary) {
         this.salary = salary;
     }
 
-    public CandidateState getCandidateState() {
+    public final CandidateState getCandidateState() {
         return candidateState;
     }
 
-    public void setCandidateState(CandidateState candidateState) {
+    public final void setCandidateState(final CandidateState candidateState) {
         this.candidateState = candidateState;
     }
 
-    public Set<CandidateFeedback> getCandidateFeedbacks() {
+    public final Set<CandidateFeedback> getCandidateFeedbacks() {
         if (this.candidateFeedbacks == null) {
             this.candidateFeedbacks = new HashSet<CandidateFeedback>();
         }
         return candidateFeedbacks;
     }
 
-    public void setCandidateFeedbacks(Set<CandidateFeedback> candidateFeedbacks) {
+    public final void setCandidateFeedbacks(final Set<CandidateFeedback> candidateFeedbacks) {
         this.candidateFeedbacks = candidateFeedbacks;
     }
 
-    public Set<Attachment> getAttachments() {
+    public final Set<Attachment> getAttachments() {
         if (this.attachments == null) {
             this.attachments = new HashSet<Attachment>();
         }
         return attachments;
     }
 
-    public void setAttachments(Set<Attachment> attachments) {
+    public final void setAttachments(final Set<Attachment> attachments) {
         this.attachments = attachments;
     }
 
-    public Set<CandidateExperience> getExperiences() {
+    public final Set<CandidateExperience> getExperiences() {
         if (this.experiences == null) {
             this.experiences = new HashSet<CandidateExperience>();
         }
         return experiences;
     }
 
-    public void setExperiences(Set<CandidateExperience> experiences) {
+    public final void setExperiences(final Set<CandidateExperience> experiences) {
         this.experiences = experiences;
     }
 
-    public Set<ContactDetails> getContactDetails() {
+    public final Set<ContactDetails> getContactDetails() {
         if (this.contactDetails == null) {
             this.contactDetails = new HashSet<ContactDetails>();
         }
         return contactDetails;
     }
 
-    public void setContactDetails(Set<ContactDetails> contactDetails) {
+    public final void setContactDetails(final Set<ContactDetails> contactDetails) {
         this.contactDetails = contactDetails;
     }
 
-    public Set<Interview> getInterviews() {
+    public final Set<Interview> getInterviews() {
         if (this.interviews == null) {
             this.interviews = new HashSet<Interview>();
         }
         return interviews;
     }
 
-    public void setInterviews(Set<Interview> interviews) {
+    public final void setInterviews(final Set<Interview> interviews) {
         this.interviews = interviews;
     }
 
-    public Set<Skill> getSkills() {
+    public final Set<Skill> getSkills() {
         if (this.skills == null) {
             this.skills = new HashSet<Skill>();
         }
         return skills;
     }
 
-    public void setSkills(Set<Skill> skills) {
+    public final void setSkills(final Set<Skill> skills) {
         this.skills = skills;
     }
 
-    public Set<VacancyCandidate> getVacancyCandidates() {
+    public final  Set<VacancyCandidate> getVacancyCandidates() {
         if (this.vacancyCandidates == null) {
             this.vacancyCandidates = new HashSet<VacancyCandidate>();
         }
         return vacancyCandidates;
     }
 
-    public void setVacancyCandidates(Set<VacancyCandidate> vacancyCandidates) {
+    public final void setVacancyCandidates(final Set<VacancyCandidate> vacancyCandidates) {
         this.vacancyCandidates = vacancyCandidates;
     }
 }

@@ -1,6 +1,18 @@
 package by.team34.entity;
 
-import javax.persistence.*;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -37,84 +49,84 @@ public class User {
     private Set<Role> roles;
 
 
-    public int getId() {
+    public final int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public final void setId(final int id) {
         this.id = id;
     }
 
-    public String getEmail() {
+    public final String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public final void setEmail(final String email) {
         this.email = email;
     }
 
-    public String getPassword() {
+    public final String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public final void setPassword(final String password) {
         this.password = password;
     }
 
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public final void setName(final String name) {
         this.name = name;
     }
 
-    public String getSurname() {
+    public final String getSurname() {
         return surname;
     }
 
-    public void setSurname(String surname) {
+    public final void setSurname(final String surname) {
         this.surname = surname;
     }
 
-    public String getUserState() {
+    public final String getUserState() {
         return userState;
     }
 
-    public void setUserState(String userState) {
+    public final void setUserState(final String userState) {
         this.userState = userState;
     }
 
-    public Set<CandidateFeedback> getCandidateFeedbacks() {
+    public final Set<CandidateFeedback> getCandidateFeedbacks() {
         if (this.candidateFeedbacks == null) {
             this.candidateFeedbacks = new HashSet<CandidateFeedback>();
         }
         return candidateFeedbacks;
     }
 
-    public void setCandidateFeedbacks(Set<CandidateFeedback> candidateFeedbacks) {
+    public final void setCandidateFeedbacks(final Set<CandidateFeedback> candidateFeedbacks) {
         this.candidateFeedbacks = candidateFeedbacks;
     }
 
-    public Set<Vacancy> getVacancies() {
+    public final Set<Vacancy> getVacancies() {
         if (this.vacancies == null) {
             this.vacancies = new HashSet<Vacancy>();
         }
         return vacancies;
     }
 
-    public void setVacancies(Set<Vacancy> vacancies) {
+    public final void setVacancies(final Set<Vacancy> vacancies) {
         this.vacancies = vacancies;
     }
 
-    public Set<Role> getRoles() {
+    public final Set<Role> getRoles() {
         if (this.roles == null) {
             this.roles = new HashSet<Role>();
         }
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public final void setRoles(final Set<Role> roles) {
         this.roles = roles;
     }
 }

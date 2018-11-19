@@ -1,6 +1,10 @@
 package by.team34.entity;
 
-import javax.persistence.*;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 
 @Entity
@@ -15,27 +19,27 @@ public class ContactDetails {
     @Column(name = "CONTACT_DETAILS")
     private String contactDetails;
 
-    public Candidate getCandidate() {
+    public final Candidate getCandidate() {
         return candidate;
     }
 
-    public void setCandidate(Candidate candidate) {
+    public final void setCandidate(final Candidate candidate) {
         this.candidate = candidate;
     }
 
-    public String getContactType() {
+    public final String getContactType() {
         return contactType;
     }
 
-    public void setContactType(String contactType) {
+    public final void setContactType(final String contactType) {
         this.contactType = contactType;
     }
 
-    public String getContactDetails() {
+    public final String getContactDetails() {
         return contactDetails;
     }
 
-    public void setContactDetails(String contactDetails) {
+    public final void setContactDetails(final String contactDetails) {
         this.contactDetails = contactDetails;
     }
 }

@@ -1,6 +1,11 @@
 package by.team34.entity;
 
-import javax.persistence.*;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.FetchType;
 
 
 @Entity
@@ -22,35 +27,35 @@ public class VacancyCandidate {
     @Column(name = "REASON")
     private String reason;
 
-    public Vacancy getVacancy() {
+    public final Vacancy getVacancy() {
         return vacancy;
     }
 
-    public void setVacancy(Vacancy vacancy) {
+    public final void setVacancy(final Vacancy vacancy) {
         this.vacancy = vacancy;
     }
 
-    public Candidate getCandidate() {
+    public final Candidate getCandidate() {
         return candidate;
     }
 
-    public void setCandidate(Candidate candidate) {
+    public final void setCandidate(final Candidate candidate) {
         this.candidate = candidate;
     }
 
-    public SuitableState getSuitableState() {
+    public final SuitableState getSuitableState() {
         return suitableState;
     }
 
-    public void setSuitableState(SuitableState suitableState) {
+    public final void setSuitableState(final SuitableState suitableState) {
         this.suitableState = suitableState;
     }
 
-    public String getReason() {
+    public final String getReason() {
         return reason;
     }
 
-    public void setReason(String reason) {
+    public final void setReason(final String reason) {
         this.reason = reason;
     }
 }

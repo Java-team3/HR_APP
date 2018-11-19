@@ -1,6 +1,10 @@
 package by.team34.entity;
 
-import javax.persistence.*;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.FetchType;
 
 @Entity
 @Table(name = "feedback_details")

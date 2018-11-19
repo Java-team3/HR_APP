@@ -1,6 +1,16 @@
 package by.team34.entity;
 
-import javax.persistence.*;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,30 +31,30 @@ public class Role {
             inverseJoinColumns = @JoinColumn(name = "USER_ID"))
     private Set<User> users;
 
-    public int getId() {
+    public final int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public final void setId(final int id) {
         this.id = id;
     }
 
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public final void setName(final String name) {
         this.name = name;
     }
 
-    public Set<User> getUsers() {
+    public final Set<User> getUsers() {
         if (this.users == null) {
             this.users = new HashSet<User>();
         }
         return users;
     }
 
-    public void setUsers(Set<User> users) {
+    public final void setUsers(final Set<User> users) {
         this.users = users;
     }
 }

@@ -18,22 +18,22 @@ public class SuitableState {
     @OneToMany(mappedBy = "suitableState")
     private Set<VacancyCandidate> vacancyCandidates;
 
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public final void setName(final String name) {
         this.name = name;
     }
 
-    public Set<VacancyCandidate> getVacancyCandidates() {
+    public final Set<VacancyCandidate> getVacancyCandidates() {
         if (this.vacancyCandidates == null) {
             this.vacancyCandidates = new HashSet<VacancyCandidate>();
         }
         return vacancyCandidates;
     }
 
-    public void setVacancyCandidates(Set<VacancyCandidate> vacancyCandidates) {
+    public final void setVacancyCandidates(final Set<VacancyCandidate> vacancyCandidates) {
         this.vacancyCandidates = vacancyCandidates;
     }
 }

@@ -9,16 +9,15 @@ import java.util.regex.Pattern;
 public class DateValidator implements ConstraintValidator<Date, String> {
 
     @Override
-    public void initialize(Date paramA) {}
+    public final void initialize(final Date paramA) {
+    }
 
     @Override
-    public boolean isValid(String date, ConstraintValidatorContext ctx) {
+    public final boolean isValid(String date, ConstraintValidatorContext ctx) {
         final String DATE_PATTERN
                 = "((19|20)\\d\\d)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])";
-
         final Pattern pattern;
         Matcher matcher;
-
         pattern = Pattern.compile(DATE_PATTERN);
         matcher = pattern.matcher(date);
         if (matcher.matches()) {

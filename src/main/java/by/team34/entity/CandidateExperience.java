@@ -1,6 +1,18 @@
 package by.team34.entity;
 
-import javax.persistence.*;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -40,70 +52,70 @@ public class CandidateExperience {
             inverseJoinColumns = @JoinColumn(name = "RESPONSIBILITY"))
     private Set<Responsibility> responsibilities;
 
-    public int getId() {
+    public final int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public final void setId(final int id) {
         this.id = id;
     }
 
-    public Candidate getCandidate() {
+    public final Candidate getCandidate() {
         return candidate;
     }
 
-    public void setCandidate(Candidate candidate) {
+    public final void setCandidate(final Candidate candidate) {
         this.candidate = candidate;
     }
 
-    public Date getDateFrom() {
+    public final Date getDateFrom() {
         return dateFrom;
     }
 
-    public void setDateFrom(Date dateFrom) {
+    public final void setDateFrom(final Date dateFrom) {
         this.dateFrom = dateFrom;
     }
 
-    public Date getDateTo() {
+    public final Date getDateTo() {
         return dateTo;
     }
 
-    public void setDateTo(Date dateTo) {
+    public final void setDateTo(final Date dateTo) {
         this.dateTo = dateTo;
     }
 
-    public String getJobDescription() {
+    public final String getJobDescription() {
         return jobDescription;
     }
 
-    public void setJobDescription(String jobDescription) {
+    public final void setJobDescription(final String jobDescription) {
         this.jobDescription = jobDescription;
     }
 
-    public String getJobPosition() {
+    public final String getJobPosition() {
         return jobPosition;
     }
 
-    public void setJobPosition(String jobPosition) {
+    public final void setJobPosition(final String jobPosition) {
         this.jobPosition = jobPosition;
     }
 
-    public String getCompanyName() {
+    public final String getCompanyName() {
         return companyName;
     }
 
-    public void setCompanyName(String companyName) {
+    public final void setCompanyName(final String companyName) {
         this.companyName = companyName;
     }
 
-    public Set<Responsibility> getResponsibilities() {
+    public final Set<Responsibility> getResponsibilities() {
         if (this.responsibilities == null) {
             this.responsibilities = new HashSet<Responsibility>();
         }
         return responsibilities;
     }
 
-    public void setResponsibilities(Set<Responsibility> responsibilities) {
+    public final void setResponsibilities(final Set<Responsibility> responsibilities) {
         this.responsibilities = responsibilities;
     }
 }

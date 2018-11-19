@@ -1,6 +1,16 @@
 package by.team34.entity;
 
-import javax.persistence.*;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -32,54 +42,54 @@ public class Interview {
     @OneToMany(mappedBy = "interview", fetch = FetchType.LAZY)
     private Set<CandidateFeedback> candidateFeedbacks;
 
-    public int getId() {
+    public final int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public final void setId(final int id) {
         this.id = id;
     }
 
-    public Vacancy getVacancy() {
+    public final Vacancy getVacancy() {
         return vacancy;
     }
 
-    public void setVacancy(Vacancy vacancy) {
+    public final void setVacancy(final Vacancy vacancy) {
         this.vacancy = vacancy;
     }
 
-    public Candidate getCandidate() {
+    public final Candidate getCandidate() {
         return candidate;
     }
 
-    public void setCandidate(Candidate candidate) {
+    public final void setCandidate(final Candidate candidate) {
         this.candidate = candidate;
     }
 
-    public Date getFactDate() {
+    public final Date getFactDate() {
         return factDate;
     }
 
-    public void setFactDate(Date factDate) {
+    public final void setFactDate(final Date factDate) {
         this.factDate = factDate;
     }
 
-    public Date getPlanDate() {
+    public final Date getPlanDate() {
         return planDate;
     }
 
-    public void setPlanDate(Date planDate) {
+    public final void setPlanDate(final Date planDate) {
         this.planDate = planDate;
     }
 
-    public Set<CandidateFeedback> getCandidateFeedbacks() {
+    public final Set<CandidateFeedback> getCandidateFeedbacks() {
         if (this.candidateFeedbacks == null) {
             this.candidateFeedbacks = new HashSet<CandidateFeedback>();
         }
         return candidateFeedbacks;
     }
 
-    public void setCandidateFeedbacks(Set<CandidateFeedback> candidateFeedbacks) {
+    public final void setCandidateFeedbacks(final Set<CandidateFeedback> candidateFeedbacks) {
         this.candidateFeedbacks = candidateFeedbacks;
     }
 }

@@ -1,6 +1,15 @@
 package by.team34.entity;
 
-import javax.persistence.*;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -37,62 +46,62 @@ public class CandidateFeedback {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "candidateFeedback")
     private Set<FeedbackDetails> feedbackDetails;
 
-    public int getId() {
+    public final int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public final void setId(final int id) {
         this.id = id;
     }
 
-    public Candidate getCandidate() {
+    public final Candidate getCandidate() {
         return candidate;
     }
 
-    public void setCandidate(Candidate candidate) {
+    public final void setCandidate(final Candidate candidate) {
         this.candidate = candidate;
     }
 
-    public Interview getInterview() {
+    public final Interview getInterview() {
         return interview;
     }
 
-    public void setInterview(Interview interview) {
+    public final void setInterview(final Interview interview) {
         this.interview = interview;
     }
 
-    public User getUser() {
+    public final User getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public final void setUser(final User user) {
         this.user = user;
     }
 
-    public FeedbackState getFeedbackState() {
+    public final FeedbackState getFeedbackState() {
         return feedbackState;
     }
 
-    public void setFeedbackState(FeedbackState feedbackState) {
+    public final void setFeedbackState(final FeedbackState feedbackState) {
         this.feedbackState = feedbackState;
     }
 
-    public String getFeedBackText() {
+    public final String getFeedBackText() {
         return feedBackText;
     }
 
-    public void setFeedBackText(String feedBackText) {
+    public final void setFeedBackText(final String feedBackText) {
         this.feedBackText = feedBackText;
     }
 
-    public Set<FeedbackDetails> getFeedbackDetails() {
+    public final Set<FeedbackDetails> getFeedbackDetails() {
         if (this.feedbackDetails == null) {
             this.feedbackDetails = new HashSet<FeedbackDetails>();
         }
         return feedbackDetails;
     }
 
-    public void setFeedbackDetails(Set<FeedbackDetails> feedbackDetails) {
+    public final void setFeedbackDetails(final Set<FeedbackDetails> feedbackDetails) {
         this.feedbackDetails = feedbackDetails;
     }
 }

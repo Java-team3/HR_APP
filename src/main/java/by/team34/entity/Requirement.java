@@ -1,6 +1,14 @@
 package by.team34.entity;
 
-import javax.persistence.*;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.FetchType;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,22 +26,22 @@ public class Requirement {
             inverseJoinColumns = @JoinColumn(name = "VACANCY_ID"))
     private Set<Vacancy> vacancies;
 
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public final void setName(final String name) {
         this.name = name;
     }
 
-    public Set<Vacancy> getVacancies() {
+    public final Set<Vacancy> getVacancies() {
         if (this.vacancies == null) {
             this.vacancies = new HashSet<Vacancy>();
         }
         return vacancies;
     }
 
-    public void setVacancies(Set<Vacancy> vacancies) {
+    public final void setVacancies(final Set<Vacancy> vacancies) {
         this.vacancies = vacancies;
     }
 }

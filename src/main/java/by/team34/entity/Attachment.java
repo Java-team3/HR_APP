@@ -1,7 +1,11 @@
 package by.team34.entity;
 
 
-import javax.persistence.*;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "attachment")
@@ -18,27 +22,19 @@ public class Attachment {
     private Candidate candidate;
 
 
-    public String getFilePath() {
+    public final String getFilePath() {
         return filePath;
     }
 
-    public void setFilePath(String filePath) {
+    public final void setFilePath(final String filePath) {
         this.filePath = filePath;
     }
 
-    public String getAttachmentType() {
+    public final String getAttachmentType() {
         return attachmentType;
     }
 
-    public void setAttachmentType(String attachmentType) {
+    public final void setAttachmentType(final String attachmentType) {
         this.attachmentType = attachmentType;
-    }
-
-    public Candidate getCandidate() {
-        return candidate;
-    }
-
-    public void setCandidate(Candidate candidate) {
-        this.candidate = candidate;
     }
 }
