@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Id;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,6 +13,7 @@ import java.util.Set;
 @Table(name = "suitable_state")
 public class SuitableState {
 
+    @Id
     @Column(name = "NAME")
     private String name;
 

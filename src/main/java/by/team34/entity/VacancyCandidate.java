@@ -3,12 +3,12 @@ package by.team34.entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.Embeddable;
 import javax.persistence.Table;
 import javax.persistence.FetchType;
 
 
-@Entity
+@Embeddable
 @Table(name = "vacancy_candidates")
 public class VacancyCandidate {
 
