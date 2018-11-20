@@ -19,6 +19,7 @@ import java.util.Set;
 public class CandidateFeedback {
 
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")

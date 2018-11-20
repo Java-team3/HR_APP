@@ -6,12 +6,12 @@ import javax.persistence.Basic;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class SuitableStatePK implements Serializable{
-	@Basic
-	private String name;
+public class SuitableStatePK implements Serializable {
+    @Basic
+    private String name;
 
-	public SuitableStatePK(String name) {
-		this.name = name;
-	}
+    public SuitableStatePK(String name) {
+        this.name = name;
+    }
 
 }

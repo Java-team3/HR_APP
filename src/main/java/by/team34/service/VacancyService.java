@@ -4,26 +4,25 @@ import by.team34.entity.Vacancy;
 
 import java.util.List;
 
-public class VacancyService implements IGenericService<Vacancy,Integer> {
-    
+public class VacancyService implements IGenericService<Vacancy, Integer> {
 
     @Override
-    public List<Vacancy> findAll() {
+    public final List<Vacancy> findAll() {
         return null;
     }
 
     @Override
-    public List<Vacancy> sort(String type) {
+    public final List<Vacancy> sort(String type) {
         return null;
     }
 
     @Override
-    public Vacancy findBy(Integer parameter) {
+    public final Vacancy findBy(Integer parameter) {
         return null;
     }
 
     @Override
-    public void insert(Vacancy object) {
+    public  void insert(Vacancy object) {
 
     }
 
