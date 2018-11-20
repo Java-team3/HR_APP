@@ -27,7 +27,10 @@ public class VacancyDao implements IGenericDao<Vacancy, Integer> {
 
     @Override
     public List<Vacancy> sort(String type) {
-        return null;
+        return sessionFactory.getCurrentSession().createQuery(
+                "select distinct vacancy from Vacancy vacancy"
+                        + " left join fetch vacancy.user"
+                        + " left join fetch vacancy.skills order by vacancy." + type).list();
     }
 
     @Override
