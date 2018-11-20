@@ -15,5 +15,4 @@ public interface IGenericService<T, M> {
     void update(T object);
 
     void delete(M parameter);
-
 }
