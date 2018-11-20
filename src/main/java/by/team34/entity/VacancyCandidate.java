@@ -3,17 +3,21 @@ package by.team34.entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.FetchType;
 
 
-@Embeddable
+@Entity
 @Table(name = "vacancy_candidates")
 public class VacancyCandidate {
+	
+	@EmbeddedId
+	private VacancyCandidatePK id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CANDIDATE_ID")
+    @JoinColumn(name = "VACANCY_ID")
     private Vacancy vacancy;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -27,7 +31,15 @@ public class VacancyCandidate {
     @Column(name = "REASON")
     private String reason;
 
-    public final Vacancy getVacancy() {
+    public final VacancyCandidatePK getId() {
+		return id;
+	}
+
+	public final void setId(final VacancyCandidatePK id) {
+		this.id = id;
+	}
+
+	public final Vacancy getVacancy() {
         return vacancy;
     }
 

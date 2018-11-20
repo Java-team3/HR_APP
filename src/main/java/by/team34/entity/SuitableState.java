@@ -1,10 +1,10 @@
 package by.team34.entity;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Id;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,15 +12,25 @@ import java.util.Set;
 @Entity
 @Table(name = "suitable_state")
 public class SuitableState {
+	
+	@EmbeddedId
+	private SuitableStatePK id;
 
-    @Id
     @Column(name = "NAME")
     private String name;
 
     @OneToMany(mappedBy = "suitableState")
     private Set<VacancyCandidate> vacancyCandidates;
 
-    public final String getName() {
+    public final SuitableStatePK getId() {
+		return id;
+	}
+
+	public final void setId(final SuitableStatePK id) {
+		this.id = id;
+	}
+
+	public final String getName() {
         return name;
     }
 
