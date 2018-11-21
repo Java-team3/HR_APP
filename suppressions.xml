@@ -39,7 +39,7 @@
     <!--<suppress checks="UnusedImports" files="."/>-->
     <!--<suppress checks="TodoComment" files="."/>-->
 
-    <!--<suppress checks="DesignForExtension" files="."/>-->
+    <suppress checks="DesignForExtension" files="."/>
     <!--<suppress checks="FinalParameters" files="."/>-->
     <!--<suppress checks="VisibilityModifier" files="."/>-->
     <!--<suppress checks="NeedBraces" files="."/>-->
