@@ -12,9 +12,9 @@ import java.util.Set;
 @Entity
 @Table(name = "suitable_state")
 public class SuitableState {
-	
-	@EmbeddedId
-	private SuitableStatePK id;
+
+    @EmbeddedId
+    private SuitableStatePK id;
 
     @Column(name = "NAME")
     private String name;
@@ -23,14 +23,14 @@ public class SuitableState {
     private Set<VacancyCandidate> vacancyCandidates;
 
     public final SuitableStatePK getId() {
-		return id;
-	}
+        return id;
+    }
 
-	public final void setId(final SuitableStatePK id) {
-		this.id = id;
-	}
+    public final void setId(final SuitableStatePK id) {
+        this.id = id;
+    }
 
-	public final String getName() {
+    public final String getName() {
         return name;
     }
 

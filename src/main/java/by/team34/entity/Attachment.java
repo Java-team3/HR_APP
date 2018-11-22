@@ -5,16 +5,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Entity;
 
 @Entity
 @Table(name = "attachment")
 public class Attachment {
 
-	@EmbeddedId
-	private AttachmentPK id;
-	
+    @EmbeddedId
+    private AttachmentPK id;
+
     @Column(name = "FILE_PATH")
     private String filePath;
 
@@ -25,25 +25,24 @@ public class Attachment {
     @JoinColumn(name = "CANDIDATE_ID")
     private Candidate candidate;
 
-    
 
     public final AttachmentPK getId() {
-		return id;
-	}
+        return id;
+    }
 
-	public final void setId(final AttachmentPK id) {
-		this.id = id;
-	}
+    public final void setId(final AttachmentPK id) {
+        this.id = id;
+    }
 
-	public final Candidate getCandidate() {
-		return candidate;
-	}
+    public final Candidate getCandidate() {
+        return candidate;
+    }
 
-	public final void setCandidate(final Candidate candidate) {
-		this.candidate = candidate;
-	}
+    public final void setCandidate(final Candidate candidate) {
+        this.candidate = candidate;
+    }
 
-	public final String getFilePath() {
+    public final String getFilePath() {
         return filePath;
     }
 
