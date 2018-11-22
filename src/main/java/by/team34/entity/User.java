@@ -1,17 +1,23 @@
 package by.team34.entity;
 
 
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Column;
+import by.team34.entity.validation.Email;
+import by.team34.entity.validation.Password;
+
+import javax.persistence.Enumerated;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.ManyToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
 import javax.persistence.FetchType;
+
 
 import java.util.HashSet;
 import java.util.Set;
@@ -25,16 +31,24 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private int id;
+
+    @Email
     @Column(name = "EMAIL")
     private String email;
+
+    @Password
     @Column(name = "PASSWORD")
     private String password;
+
     @Column(name = "NAME")
     private String name;
+
     @Column(name = "SURNAME")
     private String surname;
+
     @Column(name = "USER_STATE")
-    private String userState;
+    @Enumerated(EnumType.STRING)
+    private UserState userState;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<CandidateFeedback> candidateFeedbacks;
@@ -89,11 +103,11 @@ public class User {
         this.surname = surname;
     }
 
-    public final String getUserState() {
+    public final UserState getUserState() {
         return userState;
     }
 
-    public final void setUserState(final String userState) {
+    public final void setUserState(final UserState userState) {
         this.userState = userState;
     }
 
