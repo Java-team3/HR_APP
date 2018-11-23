@@ -41,7 +41,14 @@ public class VacancyDao implements IGenericDao<Vacancy, Long> {
 
     @Override
     public final Vacancy findBy(Long parameter) {
-        return sessionFactory.getCurrentSession().get(Vacancy.class, parameter);
+        return (Vacancy) sessionFactory.getCurrentSession().createQuery(
+                "select distinct vacancy from Vacancy vacancy"
+                        + " left join fetch vacancy.user"
+                        + " left join fetch vacancy.user user left join fetch user.roles"
+                        + " left join fetch vacancy.interviews"
+                        + " left join fetch vacancy.vacancyCandidates"
+                        + " left join fetch vacancy.requirements"
+                        + " where vacancy.id=" + parameter).getSingleResult();
     }
 
     @Override

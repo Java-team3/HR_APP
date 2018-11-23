@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -49,5 +50,25 @@ public class VacancyController {
         return TemplateDto.parseVacancyDto(service.findAll());
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteVacancy(@RequestParam(value = "id") Long id) {
+        service.delete(id);
+    }
 
+
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/sort", method = RequestMethod.GET)
+    @ResponseBody
+    public List<VacancyDto> VacancySort(@RequestParam(value = "type") String type) {
+        return TemplateDto.parseVacancyDto(service.sort(type));
+    }
+    
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/get", method = RequestMethod.GET)
+    @ResponseBody
+    public VacancyDto getVacancy(@RequestParam(value = "id") Long id) {
+        return TemplateDto.parseVacancy(service.findBy(id));
+    }
 }
