@@ -29,33 +29,20 @@ public class TemplateDto {
         // нужно добавить про роль
     }
 
+    public static Set<RoleDto> parseRole(Collection<Role> roles) {
+        HashSet<RoleDto> set = new HashSet<RoleDto>();
+        for (Role role : roles) {
+            set.add(new RoleDto(role.getId(), role.getName()));
+        }
+        return set;
+    }
+
     public static List<UserDto> parseUserDto(Collection<User> users) {
         List<UserDto> list = new LinkedList<UserDto>();
         for (User user : users) {
             list.add(parseUser(user));
         }
         return list;
-    }
-
-//    public static RoleDto parseRole(Role role) {
-//        return new RoleDto(role.getId(), role.getName());
-//        // нужно добавить про роль
-//    }
-//
-//    public static List<RoleDto> parseRoleDto(Collection<Role> roles) {
-//        List<RoleDto> list = new LinkedList<RoleDto>();
-//        for (Role role : roles) {
-//            list.add(parseRole(role));
-//        }
-//        return list;
-//    }
-
-    public static Set<RoleDto> parseRole(Collection<Role> roles) {
-        Set<RoleDto> set = new HashSet<RoleDto>();
-        for (Role role : roles) {
-            set.add(new RoleDto(role.getId(), role.getName()));
-        }
-        return set;
     }
 
     public static List<SkillDto> parseSkill(Collection<Skill> skills) {

@@ -23,7 +23,7 @@ import java.util.List;
 public class VacancyController {
 
     @Autowired
-    private IGenericService<Vacancy, Integer> service;
+    private IGenericService<Vacancy, Long> service;
 
 
     @ResponseStatus(HttpStatus.CREATED)

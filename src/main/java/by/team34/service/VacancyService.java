@@ -11,10 +11,10 @@ import java.util.List;
 
 @Transactional
 @Service
-public class VacancyService implements IGenericService<Vacancy, Integer> {
+public class VacancyService implements IGenericService<Vacancy, Long> {
 
     @Autowired
-    private IGenericDao<Vacancy, Integer> dao;
+    private IGenericDao<Vacancy, Long> dao;
 
     @Transactional
     @Override
@@ -30,7 +30,7 @@ public class VacancyService implements IGenericService<Vacancy, Integer> {
 
     @Transactional
     @Override
-    public Vacancy findBy(Integer parameter) {
+    public Vacancy findBy(Long parameter) {
         return dao.findBy(parameter);
     }
 
@@ -48,7 +48,7 @@ public class VacancyService implements IGenericService<Vacancy, Integer> {
 
     @Transactional
     @Override
-    public void delete(Integer parameter) {
+    public void delete(Long parameter) {
         dao.delete(parameter);
     }
 }
