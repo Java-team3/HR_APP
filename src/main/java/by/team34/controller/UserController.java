@@ -57,9 +57,9 @@ public class UserController {
 
 
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "/getById", method = RequestMethod.GET)
+    @RequestMapping(value = "/get", method = RequestMethod.GET)
     @ResponseBody
-    public UserDto userById(@RequestParam(value = "id") Long id) {
+    public UserDto getUser(@RequestParam(value = "id") Long id) {
         return TemplateDto.parseUser(service.findBy(id));
     }
 }
