@@ -3,10 +3,14 @@ package by.team34.service;
 import by.team34.dao.IGenericDao;
 import by.team34.entity.Vacancy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+
+@Transactional
+@Service
 public class VacancyService implements IGenericService<Vacancy, Integer> {
 
     @Autowired
