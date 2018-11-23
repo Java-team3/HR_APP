@@ -21,7 +21,7 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private int id;
+    private Long id;
     @Column(name = "NAME")
     private String name;
 
@@ -31,11 +31,11 @@ public class Role {
             inverseJoinColumns = @JoinColumn(name = "USER_ID"))
     private Set<User> users;
 
-    public final int getId() {
+    public final Long getId() {
         return id;
     }
 
-    public final void setId(final int id) {
+    public final void setId(final Long id) {
         this.id = id;
     }
 

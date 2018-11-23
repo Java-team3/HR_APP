@@ -1,13 +1,8 @@
 package by.team34.dto;
 
-import by.team34.entity.Requirement;
-import by.team34.entity.Skill;
-import by.team34.entity.User;
-import by.team34.entity.Vacancy;
+import by.team34.entity.*;
 
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 
 public class TemplateDto {
@@ -19,7 +14,7 @@ public class TemplateDto {
                 parseRequirement(vacancy.getRequirements()));
     }
 
-    public static List<VacancyDto> parseVacancy(Collection<Vacancy> vacancies) {
+    public static List<VacancyDto> parseVacancyDto(Collection<Vacancy> vacancies) {
         List<VacancyDto> list = new LinkedList<VacancyDto>();
         for (Vacancy vacancy : vacancies) {
             list.add(parseVacancy(vacancy));
@@ -30,7 +25,7 @@ public class TemplateDto {
     public static UserDto parseUser(User user) {
         return new UserDto(user.getId(), user.getName(),
                 user.getSurname(), user.getEmail(), user.getPassword(),
-                user.getRoles());
+                parseRole(user.getRoles()));
         // нужно добавить про роль
     }
 
@@ -40,6 +35,27 @@ public class TemplateDto {
             list.add(parseUser(user));
         }
         return list;
+    }
+
+//    public static RoleDto parseRole(Role role) {
+//        return new RoleDto(role.getId(), role.getName());
+//        // нужно добавить про роль
+//    }
+//
+//    public static List<RoleDto> parseRoleDto(Collection<Role> roles) {
+//        List<RoleDto> list = new LinkedList<RoleDto>();
+//        for (Role role : roles) {
+//            list.add(parseRole(role));
+//        }
+//        return list;
+//    }
+
+    public static Set<RoleDto> parseRole(Collection<Role> roles) {
+        Set<RoleDto> set = new HashSet<RoleDto>();
+        for (Role role : roles) {
+            set.add(new RoleDto(role.getId(), role.getName()));
+        }
+        return set;
     }
 
     public static List<SkillDto> parseSkill(Collection<Skill> skills) {
