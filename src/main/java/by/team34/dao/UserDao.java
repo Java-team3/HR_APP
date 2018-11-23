@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class UserDao implements IGenericDao<User, Integer> {
+public class UserDao implements IGenericDao<User, Long> {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -29,7 +29,7 @@ public class UserDao implements IGenericDao<User, Integer> {
     }
 
     @Override
-    public User findBy(Integer parameter) {
+    public User findBy(Long parameter) {
         return sessionFactory.getCurrentSession().get(User.class, parameter);
     }
 
@@ -44,7 +44,7 @@ public class UserDao implements IGenericDao<User, Integer> {
     }
 
     @Override
-    public void delete(Integer parameter) {
+    public void delete(Long parameter) {
         User user = (User) sessionFactory.getCurrentSession().load(User.class, parameter);
         if (user != null) {
             sessionFactory.getCurrentSession().delete(user);

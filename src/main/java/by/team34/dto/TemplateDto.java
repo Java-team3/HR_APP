@@ -1,13 +1,8 @@
 package by.team34.dto;
 
-import by.team34.entity.Requirement;
-import by.team34.entity.Skill;
-import by.team34.entity.User;
-import by.team34.entity.Vacancy;
+import by.team34.entity.*;
 
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 
 public class TemplateDto {
@@ -30,10 +25,17 @@ public class TemplateDto {
     public static UserDto parseUser(User user) {
         return new UserDto(user.getId(), user.getName(),
                 user.getSurname(), user.getEmail(), user.getPassword(),
-                user.getRoles());
+                parseRole(user.getRoles()));
         // нужно добавить про роль
     }
 
+    public static Set<RoleDto> parseRole(Collection<Role> roles){
+        HashSet<RoleDto> set = new HashSet<RoleDto>();
+        for (Role role : roles) {
+            set.add(new RoleDto(role.getId(), role.getName()));
+        }
+        return set;
+    }
     public static List<UserDto> parseUserDto(Collection<User> users) {
         List<UserDto> list = new LinkedList<UserDto>();
         for (User user : users) {
