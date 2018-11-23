@@ -16,11 +16,11 @@ public class UserDao implements IGenericDao<User, Long> {
     @Override
     public List<User> findAll() {
         //return sessionFactory.getCurrentSession().createQuery("from User").list();
-        return sessionFactory.getCurrentSession().createQuery("select u.id, u.email, u.name,"
-                + " u.surname, u.userSate from User u"
-                + " left join fetch u.candidateFeedbacks"
-                + "left join fetch  u.vacancies"
-                + "left join fetch u.roles").list();
+        return sessionFactory.getCurrentSession().createQuery("select distinct u"
+                + " from User u"
+                + " left join u.candidateFeedbacks"
+                + " left join u.vacancies"
+                + " left join fetch u.roles").list();
     }
 
     @Override
