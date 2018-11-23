@@ -3,7 +3,7 @@ package by.team34.dto;
 import java.util.List;
 
 public class VacancyDto {
-    private int id;
+    private Long id;
     private double salaryTo;
     private double salaryFrom;
     private double experienceYear;
@@ -12,7 +12,7 @@ public class VacancyDto {
     private List<RequirementDto> requirements;
 
 
-    public VacancyDto(int id, double salaryTo, double salaryFrom,
+    public VacancyDto(Long id, double salaryTo, double salaryFrom,
                       double experienceYear, String position,
                       UserDto user, List<RequirementDto> requirements) {
         this.id = id;
@@ -32,11 +32,11 @@ public class VacancyDto {
         this.user = user;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

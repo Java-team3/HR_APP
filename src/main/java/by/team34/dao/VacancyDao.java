@@ -20,7 +20,9 @@ public class VacancyDao implements IGenericDao<Vacancy, Integer> {
         return sessionFactory.getCurrentSession().createQuery(
                 "select distinct vacancy from Vacancy vacancy"
                         + " left join fetch vacancy.user"
-                        + " left join fetch vacancy.skills")
+                        + " left join fetch vacancy.interviews"
+                        + " left join fetch vacancy.vacancyCandidates"
+                        + " left join fetch vacancy.requirements")
                 .list();
     }
 
@@ -29,7 +31,10 @@ public class VacancyDao implements IGenericDao<Vacancy, Integer> {
         return sessionFactory.getCurrentSession().createQuery(
                 "select distinct vacancy from Vacancy vacancy"
                         + " left join fetch vacancy.user"
-                        + " left join fetch vacancy.skills order by vacancy." + type).list();
+                        + " left join fetch vacancy.interviews"
+                        + " left join fetch vacancy.vacancyCandidates"
+                        + " left join fetch vacancy.requirements"
+                        + "order by vacancy." + type).list();
     }
 
     @Override

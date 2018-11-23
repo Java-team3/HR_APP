@@ -29,8 +29,8 @@ public class Vacancy {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private int id;
+    @Column(name = "ID" )
+    private Long id;
 
     @Size(min = MIN_SIZE)
     @Column(name = "POSITION")
@@ -70,11 +70,11 @@ public class Vacancy {
             inverseJoinColumns = @JoinColumn(name = "REQUIREMENT"))
     private Set<Requirement> requirements;
 
-    public final int getId() {
+    public final Long getId() {
         return id;
     }
 
-    public final void setId(final int id) {
+    public final void setId(final Long id) {
         this.id = id;
     }
 
