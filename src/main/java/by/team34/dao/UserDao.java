@@ -25,12 +25,20 @@ public class UserDao implements IGenericDao<User, Long> {
 
     @Override
     public List<User> sort(String type) {
-        return sessionFactory.getCurrentSession().createQuery("order by" + type).list();
+        return sessionFactory.getCurrentSession().createQuery("select distinct u"
+                + " from User u"
+                + " left join u.candidateFeedbacks"
+                + " left join u.vacancies"
+                + " left join fetch u.roles order by u." + type).list();
     }
 
     @Override
     public User findBy(Long parameter) {
-        return sessionFactory.getCurrentSession().get(User.class, parameter);
+        return (User) sessionFactory.getCurrentSession().createQuery("select distinct u"
+                + " from User u"
+                + " left join u.candidateFeedbacks"
+                + " left join u.vacancies"
+                + " left join fetch u.roles where u.id=" + parameter).getSingleResult();
     }
 
     @Override
