@@ -17,7 +17,8 @@ public class UserDao implements IGenericDao<User, Integer> {
     public List<User> findAll() {
         //return sessionFactory.getCurrentSession().createQuery("from User").list();
         return sessionFactory.getCurrentSession().createQuery("select u.id, u.email, u.name,"
-                + " u.surname, u.userSate from User u").list();
+                + " u.surname, u.userSate from User u"
+                + " left join fetch u.roles").list();
     }
 
     @Override
