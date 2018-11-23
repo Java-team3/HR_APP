@@ -15,7 +15,6 @@ public class VacancyCandidatePK implements Serializable {
     private String suitableState;
     @Basic
     private String reason;
-
     public VacancyCandidatePK(final long vacancyId, final long candidateId,
                               final String suitableState, final String reason) {
         this.vacancyId = vacancyId;
@@ -23,5 +22,4 @@ public class VacancyCandidatePK implements Serializable {
         this.suitableState = suitableState;
         this.reason = reason;
     }
-
 }
