@@ -9,7 +9,7 @@ import java.util.List;
 
 
 @Repository
-public class VacancyDao implements IGenericDao<Vacancy, Integer> {
+public class VacancyDao implements IGenericDao<Vacancy, Long> {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -20,6 +20,7 @@ public class VacancyDao implements IGenericDao<Vacancy, Integer> {
         return sessionFactory.getCurrentSession().createQuery(
                 "select distinct vacancy from Vacancy vacancy"
                         + " left join fetch vacancy.user"
+                        + " left join fetch vacancy.user user left join fetch user.roles"
                         + " left join fetch vacancy.interviews"
                         + " left join fetch vacancy.vacancyCandidates"
                         + " left join fetch vacancy.requirements")
@@ -31,14 +32,15 @@ public class VacancyDao implements IGenericDao<Vacancy, Integer> {
         return sessionFactory.getCurrentSession().createQuery(
                 "select distinct vacancy from Vacancy vacancy"
                         + " left join fetch vacancy.user"
+                        + " left join fetch vacancy.user user left join fetch user.roles"
                         + " left join fetch vacancy.interviews"
                         + " left join fetch vacancy.vacancyCandidates"
                         + " left join fetch vacancy.requirements"
-                        + "order by vacancy." + type).list();
+                        + " order by vacancy." + type).list();
     }
 
     @Override
-    public final Vacancy findBy(Integer parameter) {
+    public final Vacancy findBy(Long parameter) {
         return sessionFactory.getCurrentSession().get(Vacancy.class, parameter);
     }
 
@@ -53,7 +55,7 @@ public class VacancyDao implements IGenericDao<Vacancy, Integer> {
     }
 
     @Override
-    public final void delete(Integer parameter) {
+    public final void delete(Long parameter) {
         Vacancy vacancy = sessionFactory.getCurrentSession().load(Vacancy.class,
                 parameter);
         if (vacancy != null) {

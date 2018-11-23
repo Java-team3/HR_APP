@@ -14,7 +14,7 @@ public class TemplateDto {
                 parseRequirement(vacancy.getRequirements()));
     }
 
-    public static List<VacancyDto> parseVacancy(Collection<Vacancy> vacancies) {
+    public static List<VacancyDto> parseVacancyDto(Collection<Vacancy> vacancies) {
         List<VacancyDto> list = new LinkedList<VacancyDto>();
         for (Vacancy vacancy : vacancies) {
             list.add(parseVacancy(vacancy));
@@ -29,13 +29,14 @@ public class TemplateDto {
         // нужно добавить про роль
     }
 
-    public static Set<RoleDto> parseRole(Collection<Role> roles){
+    public static Set<RoleDto> parseRole(Collection<Role> roles) {
         HashSet<RoleDto> set = new HashSet<RoleDto>();
         for (Role role : roles) {
             set.add(new RoleDto(role.getId(), role.getName()));
         }
         return set;
     }
+
     public static List<UserDto> parseUserDto(Collection<User> users) {
         List<UserDto> list = new LinkedList<UserDto>();
         for (User user : users) {

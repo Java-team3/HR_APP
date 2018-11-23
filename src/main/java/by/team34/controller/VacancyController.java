@@ -23,7 +23,7 @@ import java.util.List;
 public class VacancyController {
 
     @Autowired
-    private IGenericService<Vacancy, Integer> service;
+    private IGenericService<Vacancy, Long> service;
 
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -46,7 +46,7 @@ public class VacancyController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
     public List<VacancyDto> vacancyList() {
-        return TemplateDto.parseVacancy(service.findAll());
+        return TemplateDto.parseVacancyDto(service.findAll());
     }
 
 
