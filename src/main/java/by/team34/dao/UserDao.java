@@ -43,7 +43,7 @@ public class UserDao implements IGenericDao<User, Integer> {
 
     @Override
     public void delete(Integer parameter) {
-        User user = (User) sessionFactory.getCurrentSession().load(User.class, parameter);
+        User user = sessionFactory.getCurrentSession().load(User.class, parameter);
         if (user != null) {
             sessionFactory.getCurrentSession().delete(user);
         }

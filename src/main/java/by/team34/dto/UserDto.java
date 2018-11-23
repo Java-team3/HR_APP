@@ -6,14 +6,14 @@ import java.util.Set;
 
 public class UserDto {
 
-    private int id;
+    private Long id;
     private String name;
     private String surname;
     private String email;
     private String password;
     private Set<Role> role;
 
-    public UserDto(int id, String name, String surname,
+    public UserDto(Long id, String name, String surname,
                    String email, String password, Set<Role> role) {
         this.id = id;
         this.name = name;
@@ -23,11 +23,11 @@ public class UserDto {
         this.role = role;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -30,7 +30,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private int id;
+    private Long id;
 
     @Email
     @Column(name = "EMAIL")
@@ -63,11 +63,11 @@ public class User {
     private Set<Role> roles;
 
 
-    public final int getId() {
+    public final Long getId() {
         return id;
     }
 
-    public final void setId(final int id) {
+    public final void setId(final Long id) {
         this.id = id;
     }
 
