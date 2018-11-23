@@ -50,4 +50,6 @@ public class UserService implements IGenericService<User, Long> {
     public void delete(Long parameter) {
         userDao.delete(parameter);
     }
+
+
 }

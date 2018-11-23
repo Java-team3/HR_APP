@@ -41,13 +41,6 @@ public class UserController {
         service.delete(id);
     }
 
-//    @ResponseStatus(HttpStatus.OK)
-//    @RequestMapping(value = "/filter", method = RequestMethod.GET)
-//    @ResponseBody
-//    public List<UserDto> FilterUser(@RequestParam(value = "role") String role) {
-//        return TemplateDto.parseUserDto(service.findByRole(role));
-//    }
-
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/sort", method = RequestMethod.GET)
     @ResponseBody
@@ -62,4 +55,11 @@ public class UserController {
         return TemplateDto.parseUserDto(service.findAll());
     }
 
+
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/getById", method = RequestMethod.GET)
+    @ResponseBody
+    public UserDto userById(@RequestParam(value = "id") Long id) {
+        return TemplateDto.parseUser(service.findBy(id));
+    }
 }
