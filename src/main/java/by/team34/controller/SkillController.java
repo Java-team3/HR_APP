@@ -59,7 +59,7 @@ public class SkillController {
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     @ResponseBody
     public SkillDto getSkill(@RequestParam(value = "name") String name) {
-        return TemplateDto.parseSkill(service.findBy(name));
+        return TemplateDto.parseSkillDto(service.findBy(name));
     }
     
     

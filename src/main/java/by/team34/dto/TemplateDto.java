@@ -1,3 +1,4 @@
+
 package by.team34.dto;
 
 import by.team34.entity.*;
@@ -96,7 +97,7 @@ public class TemplateDto {
     public static UserDto parseUser(User user) {
         return new UserDto(user.getId(), user.getName(),
                 user.getSurname(), user.getEmail(), user.getPassword(),
-                parseRole(user.getRoles()));
+                parseRole(user.getRoles()), user.getUserState());
     }
 
     public static CandidateStateDto parseCandidateState(CandidateState candidateState) {
@@ -143,7 +144,6 @@ public class TemplateDto {
         return new InterviewDto();
     }
 
-    //  need to implement
     public static Set<InterviewDto> parseInterviewDto(Collection<Interview> interviews) {
         HashSet<InterviewDto> set = new HashSet<InterviewDto>();
         for (Interview interview : interviews) {
@@ -160,6 +160,10 @@ public class TemplateDto {
         }
         return set;
     }
+    
+    public static SkillDto parseSkillDto(Skill skill) {
+    	return new SkillDto(skill.getName());
+    }
 
     public static List<UserDto> parseUserDto(Collection<User> users) {
         List<UserDto> list = new LinkedList<UserDto>();
@@ -167,10 +171,6 @@ public class TemplateDto {
             list.add(parseUser(user));
         }
         return list;
-    }
-    
-    public static SkillDto parseSkill(Skill skill) {
-    	return new SkillDto(skill.getName());
     }
 
     public static List<SkillDto> parseSkill(Collection<Skill> skills) {
