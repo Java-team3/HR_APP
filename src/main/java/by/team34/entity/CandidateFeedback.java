@@ -23,7 +23,7 @@ public class CandidateFeedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private int id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "CANDIDATE_ID")
@@ -47,11 +47,11 @@ public class CandidateFeedback {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "candidateFeedback")
     private Set<FeedbackDetails> feedbackDetails;
 
-    public final int getId() {
+    public final Long getId() {
         return id;
     }
 
-    public final void setId(final int id) {
+    public final void setId(final Long id) {
         this.id = id;
     }
 
