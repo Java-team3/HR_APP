@@ -20,9 +20,7 @@ import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -33,7 +31,7 @@ public class Candidate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private int id;
+    private Long id;
 
     @Name
     @Column(name = "NAME")
@@ -75,17 +73,17 @@ public class Candidate {
     @JoinTable(name = "candidate_competence",
             joinColumns = @JoinColumn(name = "CANDIDATE_ID"),
             inverseJoinColumns = @JoinColumn(name = "SKILL"))
-    private Set<Skill> skills;
+    private List<Skill> skills;
 
     @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
     private Set<VacancyCandidate> vacancyCandidates;
 
 
-    public final int getId() {
+    public final Long getId() {
         return id;
     }
 
-    public final void setId(final int id) {
+    public final void setId(final Long id) {
         this.id = id;
     }
 
@@ -184,14 +182,14 @@ public class Candidate {
         this.interviews = interviews;
     }
 
-    public final Set<Skill> getSkills() {
+    public final List<Skill> getSkills() {
         if (this.skills == null) {
-            this.skills = new HashSet<Skill>();
+            this.skills = new LinkedList<Skill>();
         }
         return skills;
     }
 
-    public final void setSkills(final Set<Skill> skills) {
+    public final void setSkills(final List<Skill> skills) {
         this.skills = skills;
     }
 

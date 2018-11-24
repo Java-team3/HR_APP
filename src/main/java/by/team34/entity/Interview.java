@@ -19,10 +19,11 @@ import java.util.Set;
 @Table(name = "interview")
 public class Interview {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private int id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "VACANCY_ID")
@@ -38,15 +39,14 @@ public class Interview {
     @Column(name = "planDate")
     private Date planDate;
 
-
     @OneToMany(mappedBy = "interview", fetch = FetchType.LAZY)
     private Set<CandidateFeedback> candidateFeedbacks;
 
-    public final int getId() {
+    public final Long getId() {
         return id;
     }
 
-    public final void setId(final int id) {
+    public final void setId(final Long id) {
         this.id = id;
     }
 
