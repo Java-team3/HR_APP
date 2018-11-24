@@ -1,3 +1,4 @@
+
 package by.team34.dto;
 
 import by.team34.entity.*;
@@ -158,6 +159,10 @@ public class TemplateDto {
             set.add(new RoleDto(role.getId(), role.getName()));
         }
         return set;
+    }
+    
+    public static SkillDto parseSkillDto(Skill skill) {
+    	return new SkillDto(skill.getName());
     }
 
     public static List<UserDto> parseUserDto(Collection<User> users) {
