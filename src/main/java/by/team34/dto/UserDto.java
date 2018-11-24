@@ -1,6 +1,6 @@
 package by.team34.dto;
 
-import by.team34.entity.Role;
+import by.team34.entity.UserState;
 
 import java.util.Set;
 
@@ -11,16 +11,26 @@ public class UserDto {
     private String surname;
     private String email;
     private String password;
-    private Set<RoleDto> role;
+    private Set<RoleDto> roles;
+    private UserState userState;
 
     public UserDto(Long id, String name, String surname,
-                   String email, String password, Set<RoleDto> role) {
+                   String email, String password, Set<RoleDto> roles, UserState userState) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.roles = roles;
+        this.userState = userState;
+    }
+
+    public UserState getUserState() {
+        return userState;
+    }
+
+    public void setUserState(UserState userState) {
+        this.userState = userState;
     }
 
     public Long getId() {
@@ -64,12 +74,12 @@ public class UserDto {
         this.password = password;
     }
 
-    public Set<RoleDto> getRole() {
-        return role;
+    public Set<RoleDto> getRoles() {
+        return roles;
     }
 
-    public void setRole(Set<RoleDto> role) {
-        this.role = role;
+    public void setRoles(Set<RoleDto> roles) {
+        this.roles = roles;
     }
 
 }
