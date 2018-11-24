@@ -168,6 +168,10 @@ public class TemplateDto {
         }
         return list;
     }
+    
+    public static SkillDto parseSkill(Skill skill) {
+    	return new SkillDto(skill.getName());
+    }
 
     public static List<SkillDto> parseSkill(Collection<Skill> skills) {
         List<SkillDto> list = new LinkedList<SkillDto>();
