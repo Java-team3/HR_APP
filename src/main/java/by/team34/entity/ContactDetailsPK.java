@@ -14,6 +14,8 @@ public class ContactDetailsPK implements Serializable {
     @Basic
     private String contactDetails;
 
+    public ContactDetailsPK() {}
+
     public ContactDetailsPK(final long candidateId,
                             final String contactType, final String contactDetails) {
         this.candidateId = candidateId;
