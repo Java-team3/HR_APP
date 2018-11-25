@@ -14,7 +14,7 @@ public class CandidateDao implements IGenericDao<Candidate, Long> {
 
     @Override
     public List<Candidate> findAll() {
-        return sessionFactory.getCurrentSession().createQuery("select distinct candidate"
+        List<Candidate> list = sessionFactory.getCurrentSession().createQuery("select distinct candidate"
                 + " from Candidate candidate"
                 + " left join fetch candidate.candidateState"
                 + " left join fetch candidate.candidateFeedbacks"
@@ -24,11 +24,14 @@ public class CandidateDao implements IGenericDao<Candidate, Long> {
                 + " left join fetch candidate.interviews"
                 + " left join fetch candidate.skills"
                 + " left join fetch candidate.vacancyCandidates").list();
+        for(Candidate c: list)
+            System.out.println(c.getContactDetails().size());
+        return list;
     }
 
     @Override
     public List<Candidate> sort(String type) {
-        return sessionFactory.getCurrentSession().createQuery("select distinct candidate"
+       List<Candidate> list =  sessionFactory.getCurrentSession().createQuery("select distinct candidate"
                 + " from Candidate candidate"
                 + " left join fetch candidate.candidateState"
                 + " left join fetch candidate.candidateFeedbacks"
@@ -38,6 +41,9 @@ public class CandidateDao implements IGenericDao<Candidate, Long> {
                 + " left join fetch candidate.interviews"
                 + " left join fetch candidate.skills"
                 + " left join fetch candidate.vacancyCandidates order by candidate." + type).list();
+       for(Candidate c: list)
+           System.out.println(c.getContactDetails().size());
+       return list;
     }
 
     @Override

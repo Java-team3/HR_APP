@@ -16,14 +16,14 @@ public class CandidateDto {
     private Set<AttachmentDto> attachments;
 
     private Set<CandidateExperienceDto> experiences;
-    private Set<ContactDetailsDto> contactDetails;
+    private List<ContactDetailsDto> contactDetails;
     private Set<InterviewDto> interviews;
     private List<SkillDto> skills;
 
     public CandidateDto(Long id, String name, String surname, Date birthday, double salary,
                         CandidateStateDto candidateState, List<CandidateFeedbackDto> candidateFeedbacks,
                         Set<AttachmentDto> attachments, Set<CandidateExperienceDto> experiences,
-                        Set<ContactDetailsDto> contactDetails,
+                        List<ContactDetailsDto> contactDetails,
                         Set<InterviewDto> interviews, List<SkillDto> skills) {
         this.id = id;
         this.name = name;
@@ -120,14 +120,14 @@ public class CandidateDto {
         this.experiences = experiences;
     }
 
-    public final Set<ContactDetailsDto> getContactDetails() {
+    public final List<ContactDetailsDto> getContactDetails() {
         if (this.contactDetails == null) {
-            this.contactDetails = new HashSet<ContactDetailsDto>();
+            this.contactDetails = new LinkedList<ContactDetailsDto>();
         }
         return contactDetails;
     }
 
-    public final void setContactDetails(final Set<ContactDetailsDto> contactDetails) {
+    public final void setContactDetails(final List<ContactDetailsDto> contactDetails) {
         this.contactDetails = contactDetails;
     }
 

@@ -24,8 +24,18 @@ public class TemplateDto {
     }
 
     public static CandidateDto parseCandidate(Candidate candidate) {
-        return new CandidateDto(candidate.getId(), candidate.getName(), candidate.getSurname(),
-                candidate.getBirthday(), candidate.getSalary(), parseCandidateState(candidate.getCandidateState()),
+
+        System.out.println("-------------------------------------------------------");
+        System.out.println(candidate.getContactDetails().size());
+
+        System.out.println("-------------------------------------------------------");
+
+        return new CandidateDto(candidate.getId(),
+                candidate.getName(),
+                candidate.getSurname(),
+                candidate.getBirthday(),
+                candidate.getSalary(),
+                parseCandidateState(candidate.getCandidateState()),
                 parseCandidateFeedbacksDto(candidate.getCandidateFeedbacks()),
                 parseAttachmentDto(candidate.getAttachments()),
                 parseExperienceDto(candidate.getExperiences()),
@@ -49,15 +59,15 @@ public class TemplateDto {
 
     //NEED TO IMPLEMENT
     public static ContactDetailsDto parseContactDetails(ContactDetails contactDetails) {
-        return new ContactDetailsDto();
+        return new ContactDetailsDto(contactDetails.getContactType(), contactDetails.getContactDetails());
     }
 
-    public static Set<ContactDetailsDto> parseContactDetailsDto(Collection<ContactDetails> contactDetails) {
-        HashSet<ContactDetailsDto> set = new HashSet<ContactDetailsDto>();
+    public static List<ContactDetailsDto> parseContactDetailsDto(Collection<ContactDetails> contactDetails) {
+        List<ContactDetailsDto> list = new LinkedList<ContactDetailsDto>();
         for (ContactDetails contactDetails1 : contactDetails) {
-            set.add(parseContactDetails(contactDetails1));
+            list.add(parseContactDetails(contactDetails1));
         }
-        return set;
+        return list;
     }
 
     public static CandidateExperienceDto parseExperience(CandidateExperience candidateExperience) {
