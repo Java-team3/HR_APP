@@ -173,7 +173,9 @@ public class TemplateDto {
                 interview.getVacancy().getId(),
                 interview.getCandidate().getId(),
                 interview.getFactDate(),
-                interview.getPlanDate());
+                interview.getPlanDate(),
+                interview.getVacancy(),
+                interview.getCandidate());
     }
 
     public static Set<InterviewDto> parseInterviewDto(Collection<Interview> interviews) {

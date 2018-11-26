@@ -3,6 +3,7 @@ package by.team34.controller;
 import by.team34.dto.InterviewDto;
 import by.team34.dto.TemplateDto;
 import by.team34.entity.Interview;
+import by.team34.parsers.InterviewParser;
 import by.team34.service.IGenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,21 +46,21 @@ public class InterviewController {
     @GetMapping(value = "/id")
     @ResponseBody
     public InterviewDto InterviewFilter(@RequestParam(value = "id") Long id) {
-        return TemplateDto.parseInterview(service.findBy(id));
+        return InterviewParser.parse(service.findBy(id));
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/sort")
     @ResponseBody
     public Set<InterviewDto> InterviewSort(@RequestParam(value = "type") String type) {
-        return TemplateDto.parseInterviewDto(service.sort(type));
+        return InterviewParser.parseDTO(service.sort(type));
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/list")
     @ResponseBody
     public Set<InterviewDto> InterviewList() {
-        return TemplateDto.parseInterviewDto(service.findAll());
+        return InterviewParser.parseDTO(service.findAll());
     }
 
 

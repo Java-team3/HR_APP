@@ -1,5 +1,9 @@
 package by.team34.dto;
 
+import by.team34.entity.Candidate;
+import by.team34.entity.Requirement;
+import by.team34.entity.Vacancy;
+
 import java.util.Date;
 import java.util.Set;
 
@@ -9,29 +13,22 @@ public class InterviewDto {
     private Long vacancyId;
     private Long candidateId;
 
-
-    //private VacancyDto vacancy;
-    //private CandidateDto candidate;
     private Date factDate;
     private Date planDate;
-    //private Set<CandidateFeedbackDto> candidateFeedbacks;
 
-    public InterviewDto(Long id, Long vacancyId, Long candidateId, Date factDate, Date planDate) {
+    private VacancyProxy vacancy;
+    private CandidateProxy candidate;
+
+
+    public InterviewDto(Long id, Long vacancyId, Long candidateId, Date factDate, Date planDate,Vacancy vacancy,Candidate candidate) {
         this.id = id;
         this.vacancyId = vacancyId;
         this.candidateId = candidateId;
         this.factDate = factDate;
         this.planDate = planDate;
+        this.vacancy = new VacancyProxy(vacancy);
+        this.candidate = new CandidateProxy(candidate);
     }
-
-//    public InterviewDto(Long id, VacancyDto vacancy, CandidateDto candidate, Date factDate, Date planDate, Set<CandidateFeedbackDto> candidateFeedbacks) {
-//        this.id = id;
-//        //this.vacancy = vacancy;
-//        //this.candidate = candidate;
-//        this.factDate = factDate;
-//        this.planDate = planDate;
-//        // this.candidateFeedbacks = candidateFeedbacks;
-//    }
 
     public Long getId() {
         return id;
@@ -40,22 +37,6 @@ public class InterviewDto {
     public void setId(Long id) {
         this.id = id;
     }
-
-//    public VacancyDto getVacancy() {
-//        return vacancy;
-//    }
-//
-//    public void setVacancy(VacancyDto vacancy) {
-//        this.vacancy = vacancy;
-//    }
-
-//    public CandidateDto getCandidate() {
-//        return candidate;
-//    }
-//
-//    public void setCandidate(CandidateDto candidate) {
-//        this.candidate = candidate;
-//    }
 
     public Date getFactDate() {
         return factDate;
@@ -73,15 +54,6 @@ public class InterviewDto {
         this.planDate = planDate;
     }
 
-//    public Set<CandidateFeedbackDto> getCandidateFeedbacks() {
-//        return candidateFeedbacks;
-//    }
-//
-//    public void setCandidateFeedbacks(Set<CandidateFeedbackDto> candidateFeedbacks) {
-//        this.candidateFeedbacks = candidateFeedbacks;
-//    }
-
-
     public Long getVacancyId() {
         return vacancyId;
     }
@@ -97,5 +69,32 @@ public class InterviewDto {
     public void setCandidateId(Long candidateId) {
         this.candidateId = candidateId;
     }
+
+
+    private class VacancyProxy{
+        //а вот тут возможнл набор строк возврашать было бы лучше
+        private Set<Requirement> requirements;
+        private VacancyProxy(Vacancy vacancy) {
+            //TODO кто нибудь у кого не валится ленивая инициализация попробуйте придумтаь тут
+            //this.requirements = vacancy.getRequirements();
+        }
+    }
+
+    private class CandidateProxy{
+        private Long id;
+        private String name;
+        private String surname;
+        private Date birthday;
+        private double salary;
+
+        private CandidateProxy(Candidate candidate) {
+            this.id = candidate.getId();
+            this.name = candidate.getName();
+            this.surname = candidate.getSurname();
+            this.birthday = candidate.getBirthday();
+            this.salary = candidate.getSalary();
+        }
+    }
+
 
 }
