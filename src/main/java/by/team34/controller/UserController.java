@@ -23,7 +23,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/saveOrUpdate", method = RequestMethod.PUT)
     @ResponseBody
-    public User SaveUser(@Valid @RequestBody User user, BindingResult bindingResult) throws BindException {
+    public User userSave(@Valid @RequestBody User user, BindingResult bindingResult) throws BindException {
         if (bindingResult.hasErrors()) {
             throw new BindException(bindingResult);
         }
@@ -37,21 +37,21 @@ public class UserController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     @ResponseBody
-    public void UserDelete(@RequestParam(value = "id") Long id) {
+    public void userDelete(@RequestParam(value = "id") Long id) {
         service.delete(id);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/sort", method = RequestMethod.GET)
     @ResponseBody
-    public List<UserDto> UserSort(@RequestParam(value = "type") String type) {
+    public List<UserDto> userSort(@RequestParam(value = "type") String type) {
         return TemplateDto.parseUserDto(service.sort(type));
     }
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public List<UserDto> UserAll() {
+    public List<UserDto> userAll() {
         return TemplateDto.parseUserDto(service.findAll());
     }
 
