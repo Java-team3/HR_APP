@@ -7,11 +7,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Attachment {
 
-    //@Column(name = "FILE_PATH")
     private String filePath;
-
-    //@Column(name = "ATTACHMENT_TYPE")
-    private String attachmentType;
+    private AttachmentType attachmentType;
 
     public final String getFilePath() {
         return filePath;
@@ -21,11 +18,17 @@ public class Attachment {
         this.filePath = filePath;
     }
 
-    public final String getAttachmentType() {
+    public AttachmentType getAttachmentType() {
         return attachmentType;
     }
 
-    public final void setAttachmentType(final String attachmentType) {
+    public void setAttachmentType(AttachmentType attachmentType) {
         this.attachmentType = attachmentType;
+    }
+
+    public enum AttachmentType {
+        CV,
+        COVER_LETTER,
+        PHOTO
     }
 }

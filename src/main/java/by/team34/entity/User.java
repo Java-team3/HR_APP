@@ -143,4 +143,8 @@ public class User {
     public final void setRoles(final Set<Role> roles) {
         this.roles = roles;
     }
+    public enum UserState {
+        Active,
+        Archive
+    }
 }

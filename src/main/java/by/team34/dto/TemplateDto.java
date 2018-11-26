@@ -44,7 +44,7 @@ public class TemplateDto {
     }
 
     public static AttachmentDto parseAttachment(Attachment attachment) {
-        return new AttachmentDto(attachment.getAttachmentType(), attachment.getFilePath());
+        return new AttachmentDto(attachment.getAttachmentType().toString(), attachment.getFilePath());
     }
 
     public static List<AttachmentDto> parseAttachmentDto(Collection<Attachment> attachments) {
@@ -55,7 +55,6 @@ public class TemplateDto {
         return set;
     }
 
-    //NEED TO IMPLEMENT
     public static ContactDetailsDto parseContactDetails(ContactDetails contactDetails) {
         return new ContactDetailsDto(contactDetails.getContactType(), contactDetails.getContactDetails());
     }
@@ -105,7 +104,7 @@ public class TemplateDto {
     public static UserDto parseUser(User user) {
         return new UserDto(user.getId(), user.getName(),
                 user.getSurname(), user.getEmail(), user.getPassword(),
-                parseRole(user.getRoles()), user.getUserState());
+                parseRole(user.getRoles()), user.getUserState().toString());
     }
 
     public static CandidateStateDto parseCandidateState(CandidateState candidateState) {

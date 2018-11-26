@@ -23,7 +23,7 @@ public class CandidateController {
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/saveOrUpdate", method = RequestMethod.PUT)
     @ResponseBody
-    public Candidate SaveOrUpdate(@Valid @RequestBody Candidate candidate, BindingResult bindingResult)
+    public Candidate candidateSave(@Valid @RequestBody Candidate candidate, BindingResult bindingResult)
             throws BindException {
         if (bindingResult.hasErrors()) {
             throw new BindException(bindingResult);
@@ -38,28 +38,28 @@ public class CandidateController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     @ResponseBody
-    public void CandidateDelete(@RequestParam(value = "id") Long id) {
+    public void candidateDelete(@RequestParam(value = "id") Long id) {
         service.delete(id);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/id", method = RequestMethod.GET)
     @ResponseBody
-    public CandidateDto CandidateFilter(@RequestParam(value = "id") Long id) {
+    public CandidateDto getCandidate(@RequestParam(value = "id") Long id) {
         return TemplateDto.parseCandidate(service.findBy(id));
     }
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/sort", method = RequestMethod.GET)
     @ResponseBody
-    public List<CandidateDto> CandidateSort(@RequestParam(value = "type") String type) {
+    public List<CandidateDto> candidateSort(@RequestParam(value = "type") String type) {
         return TemplateDto.parseCandidateDto(service.sort(type));
     }
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public List<CandidateDto> CandidateList() {
+    public List<CandidateDto> candidateAll() {
         return TemplateDto.parseCandidateDto(service.findAll());
     }
 
