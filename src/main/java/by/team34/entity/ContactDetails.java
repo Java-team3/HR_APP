@@ -2,29 +2,13 @@ package by.team34.entity;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "contact_details")
+@Embeddable
 public class ContactDetails {
-
-    @EmbeddedId
-    private ContactDetailsPK id;
-
-    @ManyToOne
-    @JoinColumn(name = "CANDIDATE_ID")
-    private Candidate candidate;
 
     @Column(name = "CONTACT_TYPE")
     private String contactType;
     @Column(name = "CONTACT_DETAILS")
     private String contactDetails;
-
-    public final Candidate getCandidate() {
-        return candidate;
-    }
-
-    public final void setCandidate(final Candidate candidate) {
-        this.candidate = candidate;
-    }
 
     public final String getContactType() {
         return contactType;
