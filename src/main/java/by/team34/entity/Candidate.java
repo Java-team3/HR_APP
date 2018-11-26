@@ -2,19 +2,7 @@ package by.team34.entity;
 
 import by.team34.entity.validation.Name;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.GenerationType;
-import javax.persistence.FetchType;
+import javax.persistence.*;
 
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
@@ -62,8 +50,10 @@ public class Candidate {
     @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
     private Set<CandidateExperience> experiences;
 
-    @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
-    private Set<ContactDetails> contactDetails;
+    @ElementCollection
+    @CollectionTable(name = "contact_details",
+            joinColumns = @JoinColumn(name = "CANDIDATE_ID"))
+    private List<ContactDetails> contactDetails;
 
     @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
     private Set<Interview> interviews;
@@ -160,14 +150,14 @@ public class Candidate {
         this.experiences = experiences;
     }
 
-    public final Set<ContactDetails> getContactDetails() {
+    public final List<ContactDetails> getContactDetails() {
         if (this.contactDetails == null) {
-            this.contactDetails = new HashSet<ContactDetails>();
+            this.contactDetails = new LinkedList<ContactDetails>();
         }
         return contactDetails;
     }
 
-    public final void setContactDetails(final Set<ContactDetails> contactDetails) {
+    public final void setContactDetails(final List<ContactDetails> contactDetails) {
         this.contactDetails = contactDetails;
     }
 
