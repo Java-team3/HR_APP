@@ -1,46 +1,17 @@
 package by.team34.entity;
 
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Table;
-import javax.persistence.Entity;
+import javax.persistence.Embeddable;
 
-@Entity
-@Table(name = "attachment")
+@Embeddable
 public class Attachment {
 
-    @EmbeddedId
-    private AttachmentPK id;
-
-    @Column(name = "FILE_PATH")
+    //@Column(name = "FILE_PATH")
     private String filePath;
 
-    @Column(name = "ATTACHMENT_TYPE")
+    //@Column(name = "ATTACHMENT_TYPE")
     private String attachmentType;
-
-    @ManyToOne
-    @JoinColumn(name = "CANDIDATE_ID")
-    private Candidate candidate;
-
-
-    public final AttachmentPK getId() {
-        return id;
-    }
-
-    public final void setId(final AttachmentPK id) {
-        this.id = id;
-    }
-
-    public final Candidate getCandidate() {
-        return candidate;
-    }
-
-    public final void setCandidate(final Candidate candidate) {
-        this.candidate = candidate;
-    }
 
     public final String getFilePath() {
         return filePath;

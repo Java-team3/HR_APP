@@ -10,11 +10,12 @@ import javax.validation.constraints.NotNull;
 
 import java.util.*;
 
+//podtyanut' interview
+//what should i do with vacancy??
 
 @Entity
 @Table(name = "candidate")
 public class Candidate {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,7 +45,14 @@ public class Candidate {
     @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
     private Set<CandidateFeedback> candidateFeedbacks;
 
-    @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
+
+    @ElementCollection
+    @CollectionTable(name = "attachment",
+            joinColumns = @JoinColumn(name = "CANDIDATE_ID"))
+    @AttributeOverrides({
+            @AttributeOverride(name = "filePath", column = @Column(name = "FILE_PATH", nullable = false)),
+            @AttributeOverride(name = "attachmentType", column = @Column(name = "ATTACHMENT_TYPE", nullable = false))
+    })
     private Set<Attachment> attachments;
 
     @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)

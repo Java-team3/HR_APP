@@ -11,9 +11,7 @@ public class CandidateDto {
     private double salary;
 
     private CandidateStateDto candidateState;
-    private List<CandidateFeedbackDto> candidateFeedbacks;
-
-    private Set<AttachmentDto> attachments;
+    private List<AttachmentDto> attachments;
 
     private Set<CandidateExperienceDto> experiences;
     private List<ContactDetailsDto> contactDetails;
@@ -21,8 +19,9 @@ public class CandidateDto {
     private List<SkillDto> skills;
 
     public CandidateDto(Long id, String name, String surname, Date birthday, double salary,
-                        CandidateStateDto candidateState, List<CandidateFeedbackDto> candidateFeedbacks,
-                        Set<AttachmentDto> attachments, Set<CandidateExperienceDto> experiences,
+                        CandidateStateDto candidateState,
+                        List<AttachmentDto> attachments,
+                        Set<CandidateExperienceDto> experiences,
                         List<ContactDetailsDto> contactDetails,
                         Set<InterviewDto> interviews, List<SkillDto> skills) {
         this.id = id;
@@ -31,7 +30,7 @@ public class CandidateDto {
         this.birthday = birthday;
         this.salary = salary;
         this.candidateState = candidateState;
-        this.candidateFeedbacks = candidateFeedbacks;
+
         this.attachments = attachments;
         this.experiences = experiences;
         this.contactDetails = contactDetails;
@@ -87,25 +86,14 @@ public class CandidateDto {
         this.candidateState = candidateState;
     }
 
-    public final List<CandidateFeedbackDto> getCandidateFeedbacks() {
-        if (this.candidateFeedbacks == null) {
-            this.candidateFeedbacks = new LinkedList<CandidateFeedbackDto>();
-        }
-        return candidateFeedbacks;
-    }
-
-    public final void setCandidateFeedbacks(final List<CandidateFeedbackDto> candidateFeedbacks) {
-        this.candidateFeedbacks = candidateFeedbacks;
-    }
-
-    public final Set<AttachmentDto> getAttachments() {
+    public final List<AttachmentDto> getAttachments() {
         if (this.attachments == null) {
-            this.attachments = new HashSet<AttachmentDto>();
+            this.attachments = new LinkedList<AttachmentDto>();
         }
         return attachments;
     }
 
-    public final void setAttachments(final Set<AttachmentDto> attachments) {
+    public final void setAttachments(final List<AttachmentDto> attachments) {
         this.attachments = attachments;
     }
 
