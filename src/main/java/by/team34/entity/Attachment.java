@@ -7,10 +7,10 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Attachment {
 
-    @Column(name = "FILE_PATH")
+    //@Column(name = "FILE_PATH")
     private String filePath;
 
-    @Column(name = "ATTACHMENT_TYPE")
+    //@Column(name = "ATTACHMENT_TYPE")
     private String attachmentType;
 
     public final String getFilePath() {

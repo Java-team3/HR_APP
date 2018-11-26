@@ -11,8 +11,6 @@ public class CandidateDto {
     private double salary;
 
     private CandidateStateDto candidateState;
-    private List<CandidateFeedbackDto> candidateFeedbacks;
-
     private List<AttachmentDto> attachments;
 
     private Set<CandidateExperienceDto> experiences;
@@ -21,8 +19,8 @@ public class CandidateDto {
     private List<SkillDto> skills;
 
     public CandidateDto(Long id, String name, String surname, Date birthday, double salary,
-                        CandidateStateDto candidateState, List<CandidateFeedbackDto> candidateFeedbacks,
-                       // List<AttachmentDto> attachments,
+                        CandidateStateDto candidateState,
+                        List<AttachmentDto> attachments,
                         Set<CandidateExperienceDto> experiences,
                         List<ContactDetailsDto> contactDetails,
                         Set<InterviewDto> interviews, List<SkillDto> skills) {
@@ -32,8 +30,8 @@ public class CandidateDto {
         this.birthday = birthday;
         this.salary = salary;
         this.candidateState = candidateState;
-        this.candidateFeedbacks = candidateFeedbacks;
-       // this.attachments = attachments;
+
+        this.attachments = attachments;
         this.experiences = experiences;
         this.contactDetails = contactDetails;
         this.interviews = interviews;
@@ -86,17 +84,6 @@ public class CandidateDto {
 
     public final void setCandidateState(final CandidateStateDto candidateState) {
         this.candidateState = candidateState;
-    }
-
-    public final List<CandidateFeedbackDto> getCandidateFeedbacks() {
-        if (this.candidateFeedbacks == null) {
-            this.candidateFeedbacks = new LinkedList<CandidateFeedbackDto>();
-        }
-        return candidateFeedbacks;
-    }
-
-    public final void setCandidateFeedbacks(final List<CandidateFeedbackDto> candidateFeedbacks) {
-        this.candidateFeedbacks = candidateFeedbacks;
     }
 
     public final List<AttachmentDto> getAttachments() {

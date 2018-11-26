@@ -35,8 +35,7 @@ public class TemplateDto {
                 candidate.getBirthday(),
                 candidate.getSalary(),
                 parseCandidateState(candidate.getCandidateState()),
-                parseCandidateFeedbacksDto(candidate.getCandidateFeedbacks()),
-              //  parseAttachmentDto(candidate.getAttachments()),
+                parseAttachmentDto(candidate.getAttachments()),
                 parseExperienceDto(candidate.getExperiences()),
                 parseContactDetailsDto(candidate.getContactDetails()),
                 parseInterviewDto(candidate.getInterviews()),
@@ -77,7 +76,7 @@ public class TemplateDto {
     }
 
     public static ResponsibilityDto parseResponsibility(Responsibility responsibility) {
-        return new ResponsibilityDto();
+        return new ResponsibilityDto(responsibility.getName());
     }
 
     public static Set<ResponsibilityDto> parseResponsibilityDto(Collection<Responsibility> responsibilities) {
