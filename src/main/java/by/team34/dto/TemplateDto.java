@@ -150,8 +150,30 @@ public class TemplateDto {
     }
 
     //NEED TO IMPLEMENT IT'S VLADISLAV JOB
+    //TODO
     public static InterviewDto parseInterview(Interview interview) {
-        return new InterviewDto();
+
+//        HashSet<CandidateFeedbackDto> candidateFeedbackDtos = new HashSet<CandidateFeedbackDto>();
+//        Set<CandidateFeedback> candidateFeedbackSet = interview.getCandidateFeedbacks();
+//        for(CandidateFeedback feedback:candidateFeedbackSet){
+//            candidateFeedbackDtos.add(parseCandidateFeedbacks(feedback));
+//        }
+
+//        return new InterviewDto(
+//                interview.getId(),
+//                parseVacancy(interview.getVacancy()),
+//                parseCandidate(interview.getCandidate()),
+//                interview.getFactDate(),
+//                interview.getPlanDate(),
+//                candidateFeedbackDtos);
+//        return null;
+//        //TODO understand and complete
+        return new InterviewDto(
+                interview.getId(),
+                interview.getVacancy().getId(),
+                interview.getCandidate().getId(),
+                interview.getFactDate(),
+                interview.getPlanDate());
     }
 
     public static Set<InterviewDto> parseInterviewDto(Collection<Interview> interviews) {
