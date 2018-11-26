@@ -27,7 +27,6 @@ public class TemplateDto {
 
         System.out.println("-------------------------------------------------------");
         System.out.println(candidate.getContactDetails().size());
-
         System.out.println("-------------------------------------------------------");
 
         return new CandidateDto(candidate.getId(),
@@ -37,7 +36,7 @@ public class TemplateDto {
                 candidate.getSalary(),
                 parseCandidateState(candidate.getCandidateState()),
                 parseCandidateFeedbacksDto(candidate.getCandidateFeedbacks()),
-                parseAttachmentDto(candidate.getAttachments()),
+              //  parseAttachmentDto(candidate.getAttachments()),
                 parseExperienceDto(candidate.getExperiences()),
                 parseContactDetailsDto(candidate.getContactDetails()),
                 parseInterviewDto(candidate.getInterviews()),
@@ -49,8 +48,8 @@ public class TemplateDto {
         return new AttachmentDto(attachment.getAttachmentType(), attachment.getFilePath());
     }
 
-    public static Set<AttachmentDto> parseAttachmentDto(Collection<Attachment> attachments) {
-        HashSet<AttachmentDto> set = new HashSet<AttachmentDto>();
+    public static List<AttachmentDto> parseAttachmentDto(Collection<Attachment> attachments) {
+        LinkedList<AttachmentDto> set = new LinkedList<AttachmentDto>();
         for (Attachment attachment : attachments) {
             set.add(parseAttachment(attachment));
         }

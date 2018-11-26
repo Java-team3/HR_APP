@@ -13,7 +13,7 @@ public class CandidateDto {
     private CandidateStateDto candidateState;
     private List<CandidateFeedbackDto> candidateFeedbacks;
 
-    private Set<AttachmentDto> attachments;
+    private List<AttachmentDto> attachments;
 
     private Set<CandidateExperienceDto> experiences;
     private List<ContactDetailsDto> contactDetails;
@@ -22,7 +22,8 @@ public class CandidateDto {
 
     public CandidateDto(Long id, String name, String surname, Date birthday, double salary,
                         CandidateStateDto candidateState, List<CandidateFeedbackDto> candidateFeedbacks,
-                        Set<AttachmentDto> attachments, Set<CandidateExperienceDto> experiences,
+                       // List<AttachmentDto> attachments,
+                        Set<CandidateExperienceDto> experiences,
                         List<ContactDetailsDto> contactDetails,
                         Set<InterviewDto> interviews, List<SkillDto> skills) {
         this.id = id;
@@ -32,7 +33,7 @@ public class CandidateDto {
         this.salary = salary;
         this.candidateState = candidateState;
         this.candidateFeedbacks = candidateFeedbacks;
-        this.attachments = attachments;
+       // this.attachments = attachments;
         this.experiences = experiences;
         this.contactDetails = contactDetails;
         this.interviews = interviews;
@@ -98,14 +99,14 @@ public class CandidateDto {
         this.candidateFeedbacks = candidateFeedbacks;
     }
 
-    public final Set<AttachmentDto> getAttachments() {
+    public final List<AttachmentDto> getAttachments() {
         if (this.attachments == null) {
-            this.attachments = new HashSet<AttachmentDto>();
+            this.attachments = new LinkedList<AttachmentDto>();
         }
         return attachments;
     }
 
-    public final void setAttachments(final Set<AttachmentDto> attachments) {
+    public final void setAttachments(final List<AttachmentDto> attachments) {
         this.attachments = attachments;
     }
 

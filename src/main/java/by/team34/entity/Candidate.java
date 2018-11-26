@@ -10,7 +10,8 @@ import javax.validation.constraints.NotNull;
 
 import java.util.*;
 
-
+//podtyanut' interview
+//what should i do with vacancy??
 @Entity
 @Table(name = "candidate")
 public class Candidate {
@@ -44,7 +45,9 @@ public class Candidate {
     @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
     private Set<CandidateFeedback> candidateFeedbacks;
 
-    @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
+
+    @ElementCollection
+    @CollectionTable(name = "attachment", joinColumns = @JoinColumn(name = "CANDIDATE_ID"))
     private Set<Attachment> attachments;
 
     @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)

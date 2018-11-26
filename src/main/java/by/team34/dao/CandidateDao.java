@@ -18,9 +18,7 @@ public class CandidateDao implements IGenericDao<Candidate, Long> {
                 + " from Candidate candidate"
                 + " left join fetch candidate.candidateState"
                 + " left join fetch candidate.candidateFeedbacks"
-                + " left join fetch candidate.attachments"
                 + " left join fetch candidate.experiences"
-               // + " left join fetch candidate.contactDetails"
                 + " left join fetch candidate.interviews"
                 + " left join fetch candidate.skills"
                 + " left join fetch candidate.vacancyCandidates").list();
@@ -35,9 +33,7 @@ public class CandidateDao implements IGenericDao<Candidate, Long> {
                 + " from Candidate candidate"
                 + " left join fetch candidate.candidateState"
                 + " left join fetch candidate.candidateFeedbacks"
-                + " left join fetch candidate.attachments"
                 + " left join fetch candidate.experiences"
-                + " left join fetch candidate.contactDetails"
                 + " left join fetch candidate.interviews"
                 + " left join fetch candidate.skills"
                 + " left join fetch candidate.vacancyCandidates order by candidate." + type).list();
@@ -52,9 +48,7 @@ public class CandidateDao implements IGenericDao<Candidate, Long> {
                 + " from Candidate candidate"
                 + " left join fetch candidate.candidateState"
                 + " left join fetch candidate.candidateFeedbacks"
-                + " left join fetch candidate.attachments"
                 + " left join fetch candidate.experiences"
-                + " left join fetch candidate.contactDetails"
                 + " left join fetch candidate.interviews"
                 + " left join fetch candidate.skills"
                 + " left join fetch candidate.vacancyCandidates where candidate.id=" + parameter).getSingleResult();
