@@ -217,5 +217,12 @@ public class TemplateDto {
         }
         return list;
     }
-
+    
+    public static List<FeedbackDto> parseFeedback(Collection<CandidateFeedback> feedback){
+    	List<FeedbackDto> list = new LinkedList<FeedbackDto>();
+    	for (CandidateFeedback feedBack : feedback) {
+    		list.add(new FeedbackDto(feedBack));
+    	}
+    	return list;
+    }
 }

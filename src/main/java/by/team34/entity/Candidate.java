@@ -61,7 +61,7 @@ public class Candidate {
     @ElementCollection
     @CollectionTable(name = "contact_details",
             joinColumns = @JoinColumn(name = "CANDIDATE_ID"))
-    private List<ContactDetails> contactDetails;
+    private Set<ContactDetails> contactDetails;
 
     @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
     private Set<Interview> interviews;
@@ -71,7 +71,7 @@ public class Candidate {
     @JoinTable(name = "candidate_competence",
             joinColumns = @JoinColumn(name = "CANDIDATE_ID"),
             inverseJoinColumns = @JoinColumn(name = "SKILL"))
-    private List<Skill> skills;
+    private Set<Skill> skills;
 
     @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
     private Set<VacancyCandidate> vacancyCandidates;
@@ -158,14 +158,14 @@ public class Candidate {
         this.experiences = experiences;
     }
 
-    public final List<ContactDetails> getContactDetails() {
+    public final Set<ContactDetails> getContactDetails() {
         if (this.contactDetails == null) {
-            this.contactDetails = new LinkedList<ContactDetails>();
+            this.contactDetails = new HashSet<ContactDetails>();
         }
         return contactDetails;
     }
 
-    public final void setContactDetails(final List<ContactDetails> contactDetails) {
+    public final void setContactDetails(final Set<ContactDetails> contactDetails) {
         this.contactDetails = contactDetails;
     }
 
@@ -180,14 +180,14 @@ public class Candidate {
         this.interviews = interviews;
     }
 
-    public final List<Skill> getSkills() {
+    public final Set<Skill> getSkills() {
         if (this.skills == null) {
-            this.skills = new LinkedList<Skill>();
+            this.skills = new HashSet<Skill>();
         }
         return skills;
     }
 
-    public final void setSkills(final List<Skill> skills) {
+    public final void setSkills(final Set<Skill> skills) {
         this.skills = skills;
     }
 
