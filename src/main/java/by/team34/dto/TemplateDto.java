@@ -8,17 +8,10 @@ import java.util.*;
 
 public class TemplateDto {
 
-    public static VacancyDto parseVacancy(Vacancy vacancy) {
-        return new VacancyDto(vacancy.getId(), vacancy.getSalaryTo(),
-                vacancy.getSalaryFrom(), vacancy.getExperienceYearsRequire(),
-                vacancy.getPosition(), parseUser(vacancy.getUser()),
-                parseRequirement(vacancy.getRequirements()));
-    }
-
     public static List<VacancyDto> parseVacancyDto(Collection<Vacancy> vacancies) {
         List<VacancyDto> list = new LinkedList<VacancyDto>();
         for (Vacancy vacancy : vacancies) {
-            list.add(parseVacancy(vacancy));
+            list.add(new VacancyDto(vacancy));
         }
         return list;
     }
@@ -101,33 +94,10 @@ public class TemplateDto {
         return list;
     }
 
-    public static UserDto parseUser(User user) {
-        return new UserDto(user.getId(), user.getName(),
-                user.getSurname(), user.getEmail(), user.getPassword(),
-                parseRole(user.getRoles()), user.getUserState().toString());
-    }
-
     public static CandidateStateDto parseCandidateState(CandidateState candidateState) {
         return new CandidateStateDto(candidateState.getName());
     }
 
-    public static CandidateFeedbackDto parseCandidateFeedbacks(CandidateFeedback candidateFeedback) {
-        return new CandidateFeedbackDto(
-                candidateFeedback.getId(),
-                parseInterview(candidateFeedback.getInterview()),
-                parseUser(candidateFeedback.getUser()),
-                parseFeedbackState(candidateFeedback.getFeedbackState()),
-                candidateFeedback.getFeedBackText(),
-                parseFeedbacksDetailsDto(candidateFeedback.getFeedbackDetails())
-        );
-    }
-
-    public static List<CandidateFeedbackDto> parseCandidateFeedbacksDto(Collection<CandidateFeedback> inList) {
-        List<CandidateFeedbackDto> list = new LinkedList<CandidateFeedbackDto>();
-        for (CandidateFeedback candidateFeedback : inList)
-            list.add(parseCandidateFeedbacks(candidateFeedback));
-        return list;
-    }
 
     public static FeedbackStateDto parseFeedbackState(FeedbackState candidateState) {
         return new FeedbackStateDto(candidateState.getName());
@@ -146,25 +116,8 @@ public class TemplateDto {
         return set;
     }
 
-    //NEED TO IMPLEMENT IT'S VLADISLAV JOB
-    //TODO
     public static InterviewDto parseInterview(Interview interview) {
 
-//        HashSet<CandidateFeedbackDto> candidateFeedbackDtos = new HashSet<CandidateFeedbackDto>();
-//        Set<CandidateFeedback> candidateFeedbackSet = interview.getCandidateFeedbacks();
-//        for(CandidateFeedback feedback:candidateFeedbackSet){
-//            candidateFeedbackDtos.add(parseCandidateFeedbacks(feedback));
-//        }
-
-//        return new InterviewDto(
-//                interview.getId(),
-//                parseVacancy(interview.getVacancy()),
-//                parseCandidate(interview.getCandidate()),
-//                interview.getFactDate(),
-//                interview.getPlanDate(),
-//                candidateFeedbackDtos);
-//        return null;
-//        //TODO understand and complete
         return new InterviewDto(
                 interview.getId(),
                 interview.getVacancy().getId(),
@@ -181,14 +134,6 @@ public class TemplateDto {
         return set;
     }
 
-
-    public static Set<RoleDto> parseRole(Collection<Role> roles) {
-        HashSet<RoleDto> set = new HashSet<RoleDto>();
-        for (Role role : roles) {
-            set.add(new RoleDto(role.getId(), role.getName()));
-        }
-        return set;
-    }
     
     public static SkillDto parseSkillDto(Skill skill) {
     	return new SkillDto(skill.getName());
@@ -197,7 +142,7 @@ public class TemplateDto {
     public static List<UserDto> parseUserDto(Collection<User> users) {
         List<UserDto> list = new LinkedList<UserDto>();
         for (User user : users) {
-            list.add(parseUser(user));
+            list.add(new UserDto(user));
         }
         return list;
     }

@@ -19,10 +19,6 @@ public class VacancyDao implements IGenericDao<Vacancy, Long> {
     public final List<Vacancy> findAll() {
         return sessionFactory.getCurrentSession().createQuery(
                 "select distinct vacancy from Vacancy vacancy"
-                        + " left join fetch vacancy.user"
-                        + " left join fetch vacancy.user user left join fetch user.roles"
-                        + " left join fetch vacancy.interviews"
-                        + " left join fetch vacancy.vacancyCandidates"
                         + " left join fetch vacancy.requirements")
                 .list();
     }
@@ -31,10 +27,6 @@ public class VacancyDao implements IGenericDao<Vacancy, Long> {
     public final List<Vacancy> sort(String type) {
         return sessionFactory.getCurrentSession().createQuery(
                 "select distinct vacancy from Vacancy vacancy"
-                        + " left join fetch vacancy.user"
-                        + " left join fetch vacancy.user user left join fetch user.roles"
-                        + " left join fetch vacancy.interviews"
-                        + " left join fetch vacancy.vacancyCandidates"
                         + " left join fetch vacancy.requirements"
                         + " order by vacancy." + type).list();
     }
@@ -43,10 +35,6 @@ public class VacancyDao implements IGenericDao<Vacancy, Long> {
     public final Vacancy findBy(Long parameter) {
         return (Vacancy) sessionFactory.getCurrentSession().createQuery(
                 "select distinct vacancy from Vacancy vacancy"
-                        + " left join fetch vacancy.user"
-                        + " left join fetch vacancy.user user left join fetch user.roles"
-                        + " left join fetch vacancy.interviews"
-                        + " left join fetch vacancy.vacancyCandidates"
                         + " left join fetch vacancy.requirements"
                         + " where vacancy.id=" + parameter).getSingleResult();
     }

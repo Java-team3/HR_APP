@@ -60,6 +60,6 @@ public class UserController {
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     @ResponseBody
     public UserDto getUser(@RequestParam(value = "id") Long id) {
-        return TemplateDto.parseUser(service.findBy(id));
+        return new UserDto(service.findBy(id));
     }
 }

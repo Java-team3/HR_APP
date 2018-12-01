@@ -69,6 +69,6 @@ public class VacancyController {
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     @ResponseBody
     public VacancyDto getVacancy(@RequestParam(value = "id") Long id) {
-        return TemplateDto.parseVacancy(service.findBy(id));
+        return new VacancyDto(service.findBy(id));
     }
 }
