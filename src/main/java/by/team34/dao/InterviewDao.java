@@ -15,39 +15,54 @@ public class InterviewDao implements IGenericDao<Interview,Long>{
 
     @Override
     public List<Interview> findAll() {
-        return sessionFactory.getCurrentSession()
-                .createQuery("select distinct i" +
-                        " from Interview i" +
-                        " left join fetch i.candidateFeedbacks" + // candidateFeedbacks left join fetch candidateFeedbacks.feedbackDetails" +
-  //                                                                          " left join fetch candidateFeedbacks.feedbackState " +
-  //                                                                          " left join fetch candidateFeedbacks.user user left join fetch user.roles" +
-                        " left join fetch i.candidate " +
-                        " left join fetch i.vacancy")
-                .list();
+        return sessionFactory.getCurrentSession().createQuery("select distinct i"
+        		+ " from Interview i"
+        		+ " left join fetch i.candidate c"
+        		+ " left join fetch c.candidateState"
+        		+ " left join fetch c.attachments"
+        		+ " left join fetch i.vacancy v"
+        		+ " left join fetch v.requirements").list();
     }
 
     @Override
     public List<Interview> sort(String type) {
-        return null;
+        return sessionFactory.getCurrentSession().createQuery("select distinct i"
+        		+ " from Interview i"
+        		+ " left join fetch i.candidate c"
+        		+ " left join fetch c.candidateState"
+        		+ " left join fetch c.attachments"
+        		+ " left join fetch i.vacancy v"
+        		+ " left join fetch v.requirements"
+        		+ " order by i." + type).list();
     }
 
     @Override
     public Interview findBy(Long parameter) {
-        return null;
+        return (Interview) sessionFactory.getCurrentSession().createQuery("select distinct i"
+        		+ " from Interview i"
+        		+ " left join fetch i.candidate c"
+        		+ " left join fetch c.candidateState"
+        		+ " left join fetch c.attachments"
+        		+ " left join fetch i.vacancy v"
+        		+ " left join fetch v.requirements"
+        		+ " where i.id = " + parameter).list();
     }
 
     @Override
     public void insert(Interview object) {
-
+    	sessionFactory.getCurrentSession().saveOrUpdate(object);
     }
 
     @Override
     public void update(Interview object) {
-
+    	sessionFactory.getCurrentSession().saveOrUpdate(object);
     }
 
     @Override
     public void delete(Long parameter) {
-
+    	Interview interview  = sessionFactory.getCurrentSession().load(Interview.class, parameter);
+    	if (interview != null) {
+    		sessionFactory.getCurrentSession().delete(interview);
+    	}
     }
 }

@@ -45,7 +45,7 @@ public class InterviewController {
     @GetMapping(value = "/id")
     @ResponseBody
     public InterviewDto InterviewFilter(@RequestParam(value = "id") Long id) {
-        return TemplateDto.parseInterview(service.findBy(id));
+        return new InterviewDto(service.findBy(id));
     }
 
     @ResponseStatus(HttpStatus.OK)

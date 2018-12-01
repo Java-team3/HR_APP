@@ -98,11 +98,6 @@ public class TemplateDto {
         return new CandidateStateDto(candidateState.getName());
     }
 
-
-    public static FeedbackStateDto parseFeedbackState(FeedbackState candidateState) {
-        return new FeedbackStateDto(candidateState.getName());
-    }
-
     //NEED TO IMPLEMENT BUT I DON'Y KNOW WHAT IS IT
     public static FeedbackDetailsDto parseFeedbackDetails(FeedbackDetails feedbackDetails) {
         return new FeedbackDetailsDto();
@@ -116,27 +111,12 @@ public class TemplateDto {
         return set;
     }
 
-    public static InterviewDto parseInterview(Interview interview) {
-
-        return new InterviewDto(
-                interview.getId(),
-                interview.getVacancy().getId(),
-                interview.getCandidate().getId(),
-                interview.getFactDate(),
-                interview.getPlanDate());
-    }
-
     public static Set<InterviewDto> parseInterviewDto(Collection<Interview> interviews) {
         HashSet<InterviewDto> set = new HashSet<InterviewDto>();
         for (Interview interview : interviews) {
-            set.add(parseInterview(interview));
+            set.add(new InterviewDto(interview));
         }
         return set;
-    }
-
-    
-    public static SkillDto parseSkillDto(Skill skill) {
-    	return new SkillDto(skill.getName());
     }
 
     public static List<UserDto> parseUserDto(Collection<User> users) {
@@ -150,15 +130,7 @@ public class TemplateDto {
     public static List<SkillDto> parseSkill(Collection<Skill> skills) {
         List<SkillDto> list = new LinkedList<SkillDto>();
         for (Skill skill : skills) {
-            list.add(new SkillDto(skill.getName()));
-        }
-        return list;
-    }
-
-    public static List<RequirementDto> parseRequirement(Collection<Requirement> requirements) {
-        List<RequirementDto> list = new LinkedList<RequirementDto>();
-        for (Requirement requirement : requirements) {
-            list.add(new RequirementDto(requirement.getName()));
+            list.add(new SkillDto(skill));
         }
         return list;
     }
