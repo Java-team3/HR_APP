@@ -1,11 +1,13 @@
 package by.team34.dto;
 
+import by.team34.entity.Skill;
+
 public class SkillDto {
 
     private String name;
 
-    public SkillDto(String name) {
-        this.name = name;
+    public SkillDto(Skill skill) {
+        this.name = skill.getName();
     }
 
     public String getName() {

@@ -1,82 +1,108 @@
 package by.team34.dto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import by.team34.entity.Requirement;
+import by.team34.entity.Vacancy;
 
 public class VacancyDto {
-    private Long id;
-    private double salaryTo;
-    private double salaryFrom;
-    private double experienceYear;
-    private String position;
-    private UserDto user;
-    private List<RequirementDto> requirements;
+	private Long id;
+	private double salaryTo;
+	private double salaryFrom;
+	private double experienceYear;
+	private String position;
+	private Set<RequirementProxy> requirements;
 
+	public VacancyDto(Vacancy vacancy) {
+		this.id = vacancy.getId();
+		this.salaryTo = vacancy.getSalaryTo();
+		this.salaryFrom = vacancy.getSalaryFrom();
+		this.experienceYear = vacancy.getExperienceYearsRequire();
+		this.position = vacancy.getPosition();
+		this.requirements = new RequirementProxy(vacancy.getRequirements()).getRequirements();
+	}
 
-    public VacancyDto(Long id, double salaryTo, double salaryFrom,
-                      double experienceYear, String position,
-                      UserDto user, List<RequirementDto> requirements) {
-        this.id = id;
-        this.salaryTo = salaryTo;
-        this.salaryFrom = salaryFrom;
-        this.experienceYear = experienceYear;
-        this.position = position;
-        this.user = user;
-        this.requirements = requirements;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public UserDto getUser() {
-        return user;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setUser(UserDto user) {
-        this.user = user;
-    }
+	public double getSalaryTo() {
+		return salaryTo;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public void setSalaryTo(double salaryTo) {
+		this.salaryTo = salaryTo;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public double getSalaryFrom() {
+		return salaryFrom;
+	}
 
-    public double getSalaryTo() {
-        return salaryTo;
-    }
+	public void setSalaryFrom(double salaryFrom) {
+		this.salaryFrom = salaryFrom;
+	}
 
-    public void setSalaryTo(double salaryTo) {
-        this.salaryTo = salaryTo;
-    }
+	public double getExperienceYear() {
+		return experienceYear;
+	}
 
-    public double getSalaryFrom() {
-        return salaryFrom;
-    }
+	public void setExperienceYear(double experienceYear) {
+		this.experienceYear = experienceYear;
+	}
 
-    public void setSalaryFrom(double salaryFrom) {
-        this.salaryFrom = salaryFrom;
-    }
+	public String getPosition() {
+		return position;
+	}
 
-    public double getExperienceYear() {
-        return experienceYear;
-    }
+	public void setPosition(String position) {
+		this.position = position;
+	}
 
-    public void setExperienceYear(double experienceYear) {
-        this.experienceYear = experienceYear;
-    }
+	public Set<RequirementProxy> getRequirements() {
+		return requirements;
+	}
 
-    public String getPosition() {
-        return position;
-    }
+	public void setRequirements(Set<RequirementProxy> requirements) {
+		this.requirements = requirements;
+	}
 
-    public void setPosition(String position) {
-        this.position = position;
-    }
+	private class RequirementProxy {
 
-    public List<RequirementDto> getRequirements() {
-        return requirements;
-    }
+		private String name;
+		private Set<RequirementProxy> requirements;
 
-    public void setRequirements(List<RequirementDto> requirements) {
-        this.requirements = requirements;
-    }
+		public RequirementProxy(Requirement requirement) {
+			this.name = requirement.getName();
+		}
+
+		public RequirementProxy(Set<Requirement> requirements) {
+			this.requirements = new HashSet<RequirementProxy>();
+			for (Requirement requirement : requirements) {
+				this.requirements.add(new RequirementProxy(requirement));
+			}
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public Set<RequirementProxy> getRequirements() {
+			return requirements;
+		}
+
+		public void setRequirements(Set<RequirementProxy> requirements) {
+			this.requirements = requirements;
+		}
+
+	}
 }
