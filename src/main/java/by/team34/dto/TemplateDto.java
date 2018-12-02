@@ -16,25 +16,6 @@ public class TemplateDto {
         return list;
     }
 
-    public static CandidateDto parseCandidate(Candidate candidate) {
-
-        System.out.println("-------------------------------------------------------");
-        System.out.println(candidate.getContactDetails().size());
-        System.out.println("-------------------------------------------------------");
-
-        return new CandidateDto(candidate.getId(),
-                candidate.getName(),
-                candidate.getSurname(),
-                candidate.getBirthday(),
-                candidate.getSalary(),
-                parseCandidateState(candidate.getCandidateState()),
-                parseAttachmentDto(candidate.getAttachments()),
-                parseExperienceDto(candidate.getExperiences()),
-                parseContactDetailsDto(candidate.getContactDetails()),
-                parseInterviewDto(candidate.getInterviews()),
-                parseSkill(candidate.getSkills())
-        );
-    }
 
     public static AttachmentDto parseAttachment(Attachment attachment) {
         return new AttachmentDto(attachment.getAttachmentType().toString(), attachment.getFilePath());
@@ -90,7 +71,7 @@ public class TemplateDto {
     public static List<CandidateDto> parseCandidateDto(Collection<Candidate> candidates) {
         List<CandidateDto> list = new LinkedList<CandidateDto>();
         for (Candidate candidate : candidates)
-            list.add(parseCandidate(candidate));
+            list.add(new CandidateDto(candidate));
         return list;
     }
 
