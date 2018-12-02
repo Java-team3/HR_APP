@@ -19,7 +19,9 @@ public class CandidateDao implements IGenericDao<Candidate, Long> {
                 + " left join fetch candidate.candidateState"
                 + " left join fetch candidate.attachments"
                 + " left join fetch candidate.interviews"
-                + " left join fetch candidate.skills").list();
+                + " left join fetch candidate.skills"
+                + " left join fetch candidate.candidateFeedbacks"
+                + " left join fetch candidate.experiences").list();
         for(Candidate c: list)
             System.out.println(c.getContactDetails().size());
         return list;

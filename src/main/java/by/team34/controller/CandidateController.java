@@ -1,8 +1,10 @@
 package by.team34.controller;
 
 import by.team34.dto.CandidateDto;
+import by.team34.dto.CandidateFullDto;
 import by.team34.dto.TemplateDto;
 import by.team34.entity.Candidate;
+import by.team34.parser.CandidateFullParser;
 import by.team34.service.IGenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -61,6 +63,13 @@ public class CandidateController {
     @ResponseBody
     public List<CandidateDto> candidateAll() {
         return TemplateDto.parseCandidateDto(service.findAll());
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping(value = "/timeline")
+    @ResponseBody
+    public List<CandidateFullDto> candidateTimeline(){
+        return CandidateFullParser.parseCandidateFullDto(service.findAll());
     }
 
 }
