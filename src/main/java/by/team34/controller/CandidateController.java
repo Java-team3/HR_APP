@@ -46,7 +46,7 @@ public class CandidateController {
     @RequestMapping(value = "/id", method = RequestMethod.GET)
     @ResponseBody
     public CandidateDto getCandidate(@RequestParam(value = "id") Long id) {
-        return TemplateDto.parseCandidate(service.findBy(id));
+        return new CandidateDto(service.findBy(id));
     }
 
     @ResponseStatus(HttpStatus.OK)
