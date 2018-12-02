@@ -133,7 +133,7 @@ public class CandidateDto {
 
 		public AttachmentProxy(Attachment attachment) {
 			this.filePath = attachment.getFilePath();
-			this.attachmentType = attachment.getAttachmentType().name();
+			this.attachmentType = attachment.getAttachmentType();
 		}
 
 		public AttachmentProxy(Set<Attachment> attachments) {

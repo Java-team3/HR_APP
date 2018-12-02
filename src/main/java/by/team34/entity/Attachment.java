@@ -1,14 +1,14 @@
 package by.team34.entity;
 
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 
 @Embeddable
 public class Attachment {
 
     private String filePath;
-    private AttachmentType attachmentType;
+
+    private String attachmentType;
 
     public final String getFilePath() {
         return filePath;
@@ -18,17 +18,12 @@ public class Attachment {
         this.filePath = filePath;
     }
 
-    public AttachmentType getAttachmentType() {
+    public String getAttachmentType() {
         return attachmentType;
     }
 
-    public void setAttachmentType(AttachmentType attachmentType) {
+    public void setAttachmentType(String attachmentType) {
         this.attachmentType = attachmentType;
     }
 
-    public enum AttachmentType {
-        CV,
-        COVER_LETTER,
-        PHOTO
-    }
 }

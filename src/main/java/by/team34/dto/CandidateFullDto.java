@@ -10,7 +10,7 @@ public class CandidateFullDto extends CandidateDto{
 
 	Set<CandidateFeedbackProxy> candidateFeedbacks;
 	Set<CandidateExperienceProxy> candidateExperiences;
-	Set<Interview> interviews;
+	Set<InterviewProxy> interviews;
 
 
 	public CandidateFullDto(Candidate candidate) {
@@ -29,9 +29,14 @@ public class CandidateFullDto extends CandidateDto{
 			this.candidateExperiences.add(new CandidateExperienceProxy(candidateExperience));
 		}
 
+		this.interviews = new HashSet<InterviewProxy>();
+
+		for (Interview interview :
+				candidate.getInterviews()) {
+			this.interviews.add(new InterviewProxy(interview));
+		}
+
 	}
-
-
 
 	private class CandidateFeedbackProxy{
 		Long id;
@@ -62,6 +67,18 @@ public class CandidateFullDto extends CandidateDto{
 			this.jobDescription = candidateExperience.getJobDescription();
 			this.jobPosition = candidateExperience.getJobPosition();
 			this.companyName = candidateExperience.getCompanyName();
+		}
+	}
+
+	private class InterviewProxy{
+		private Long id;
+		private Date factDate;
+		private Date planDate;
+
+		public InterviewProxy(Interview interview){
+			this.id = interview.getId();
+			this.planDate = interview.getPlanDate();
+			this.factDate = interview.getFactDate();
 		}
 	}
 }
