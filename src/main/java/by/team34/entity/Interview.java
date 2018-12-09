@@ -33,10 +33,10 @@ public class Interview {
     @JoinColumn(name = "CANDIDATE_ID")
     private Candidate candidate;
 
-    @Column(name = "factDate")
+    @Column(name = "FACT_DATE")
     private Date factDate;
 
-    @Column(name = "planDate")
+    @Column(name = "PLAN_DATE")
     private Date planDate;
 
     @OneToMany(mappedBy = "interview", fetch = FetchType.LAZY)

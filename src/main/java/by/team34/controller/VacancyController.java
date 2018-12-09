@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -23,7 +24,7 @@ import java.util.List;
 @RequestMapping("/vacancy")
 public class VacancyController {
 
-    @Autowired
+    @Resource(name="vacancyService")
     private IGenericService<Vacancy, Long> service;
 
 
