@@ -13,7 +13,7 @@ public class VacancyDto {
 	private double salaryFrom;
 	private double experienceYear;
 	private String position;
-	private Set<RequirementProxy> requirements;
+	private Set<RequirementProxy> requirements = new HashSet<RequirementProxy>();
 
 	public VacancyDto(Vacancy vacancy) {
 		this.id = vacancy.getId();
@@ -21,7 +21,8 @@ public class VacancyDto {
 		this.salaryFrom = vacancy.getSalaryFrom();
 		this.experienceYear = vacancy.getExperienceYearsRequire();
 		this.position = vacancy.getPosition();
-		this.requirements = new RequirementProxy(vacancy.getRequirements()).getRequirements();
+		for (Requirement requirement : vacancy.getRequirements())
+			requirements.add(new RequirementProxy(requirement));
 	}
 
 	public Long getId() {
@@ -75,17 +76,9 @@ public class VacancyDto {
 	private class RequirementProxy {
 
 		private String name;
-		private Set<RequirementProxy> requirements;
 
 		public RequirementProxy(Requirement requirement) {
 			this.name = requirement.getName();
-		}
-
-		public RequirementProxy(Set<Requirement> requirements) {
-			this.requirements = new HashSet<RequirementProxy>();
-			for (Requirement requirement : requirements) {
-				this.requirements.add(new RequirementProxy(requirement));
-			}
 		}
 
 		public String getName() {
@@ -95,14 +88,5 @@ public class VacancyDto {
 		public void setName(String name) {
 			this.name = name;
 		}
-
-		public Set<RequirementProxy> getRequirements() {
-			return requirements;
-		}
-
-		public void setRequirements(Set<RequirementProxy> requirements) {
-			this.requirements = requirements;
-		}
-
 	}
 }

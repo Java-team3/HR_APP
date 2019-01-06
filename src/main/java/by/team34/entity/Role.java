@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.GenerationType;
 import javax.persistence.FetchType;
 
@@ -16,7 +19,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "role")
-public class Role {
+public class Role implements GrantedAuthority{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,4 +60,9 @@ public class Role {
     public final void setUsers(final Set<User> users) {
         this.users = users;
     }
+
+	@Override
+	public String getAuthority() {
+		return "ROLE_"+name;
+	}
 }

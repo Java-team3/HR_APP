@@ -14,7 +14,7 @@ public class UserDto {
 	private String surname;
 	private String email;
 	private String password;
-	private Set<RoleProxy> roles;
+	private Set<RoleProxy> roles = new HashSet<RoleProxy>();
 	private String userState;
 
 	public UserDto(User user) {
@@ -24,7 +24,8 @@ public class UserDto {
 		this.email = user.getEmail();
 		this.password = user.getPassword();
 		this.userState = user.getUserState().name();
-		this.roles = new RoleProxy(user.getRoles()).getRoles();
+		for (Role role : user.getRoles())
+			roles.add(new RoleProxy(role));
 	}
 
 	public String getUserState() {
@@ -87,18 +88,10 @@ public class UserDto {
 
 		private Long id;
 		private String name;
-		private Set<RoleProxy> roles;
 
 		public RoleProxy(Role role) {
 			this.id = role.getId();
 			this.name = role.getName();
-		}
-
-		public RoleProxy(Set<Role> roles) {
-			this.roles = new HashSet<RoleProxy>();
-			for (Role role : roles) {
-				this.roles.add(new RoleProxy(role));
-			}
 		}
 
 		public Long getId() {
@@ -115,14 +108,6 @@ public class UserDto {
 
 		public void setName(String name) {
 			this.name = name;
-		}
-
-		public Set<RoleProxy> getRoles() {
-			return roles;
-		}
-
-		public void setRoles(Set<RoleProxy> roles) {
-			this.roles = roles;
 		}
 
 	}
