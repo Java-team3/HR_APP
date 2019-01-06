@@ -23,7 +23,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/saveOrUpdate", method = RequestMethod.PUT)
     @ResponseBody
-    public User userSave(@Valid @RequestBody User user, BindingResult bindingResult) throws BindException {
+    public UserDto userSave(@Valid @RequestBody User user, BindingResult bindingResult) throws BindException {
         if (bindingResult.hasErrors()) {
             throw new BindException(bindingResult);
         }
@@ -31,7 +31,7 @@ public class UserController {
             service.update(user);
         else
             service.insert(user);
-        return user;
+        return new UserDto(user);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

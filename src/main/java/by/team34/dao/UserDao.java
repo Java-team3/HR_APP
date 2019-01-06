@@ -32,7 +32,7 @@ public class UserDao implements IGenericDao<User, Long> {
     public User findBy(Long parameter) {
         return (User) sessionFactory.getCurrentSession().createQuery("select distinct u"
                 + " from User u"
-                + " left join fetch u.roles where u.id=" + parameter).getSingleResult();
+                + " left join fetch u.roles where u.id =" + parameter).getSingleResult();
     }
 
     @Override
@@ -57,6 +57,6 @@ public class UserDao implements IGenericDao<User, Long> {
     public User getUserByName(String name) {
     	return (User) sessionFactory.getCurrentSession().createQuery("select distinct u"
                 + " from User u"
-                + " left join fetch u.roles where u.name=" + name).getSingleResult();
+                + " left join fetch u.roles r where u.name = '"+name+"'").getSingleResult();
     }
 }
