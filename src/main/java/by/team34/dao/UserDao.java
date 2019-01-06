@@ -4,6 +4,7 @@ import by.team34.entity.User;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class UserDao implements IGenericDao<User, Long> {
     public User findBy(Long parameter) {
         return (User) sessionFactory.getCurrentSession().createQuery("select distinct u"
                 + " from User u"
-                + " left join fetch u.roles where u.id=" + parameter).getSingleResult();
+                + " left join fetch u.roles where u.id =" + parameter).getSingleResult();
     }
 
     @Override
@@ -50,5 +51,12 @@ public class UserDao implements IGenericDao<User, Long> {
         if (user != null) {
             sessionFactory.getCurrentSession().delete(user);
         }
+    }
+    
+    @Transactional
+    public User getUserByName(String name) {
+    	return (User) sessionFactory.getCurrentSession().createQuery("select distinct u"
+                + " from User u"
+                + " left join fetch u.roles r where u.name = '"+name+"'").getSingleResult();
     }
 }
