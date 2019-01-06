@@ -70,26 +70,36 @@ public class InterviewDto {
 	private class VacancyProxy {
 
 		private String position;
-		private Set<RequirementProxy> requirements;
+		private Set<RequirementProxy> requirements = new HashSet<RequirementProxy>();
 
 		public VacancyProxy(Vacancy vacancy) {
 			this.position = vacancy.getPosition();
+			for (Requirement requirement : vacancy.getRequirements())
+				requirements.add(new RequirementProxy(requirement));
+		}
+
+		public String getPosition() {
+			return position;
+		}
+
+		public void setPosition(String position) {
+			this.position = position;
+		}
+
+		public Set<RequirementProxy> getRequirements() {
+			return requirements;
+		}
+
+		public void setRequirements(Set<RequirementProxy> requirements) {
+			this.requirements = requirements;
 		}
 
 		private class RequirementProxy {
 
 			private String name;
-			private Set<RequirementProxy> requirements;
 
 			public RequirementProxy(Requirement requirement) {
 				this.name = requirement.getName();
-			}
-
-			public RequirementProxy(Set<Requirement> requirements) {
-				this.requirements = new HashSet<RequirementProxy>();
-				for (Requirement requirement : requirements) {
-					this.requirements.add(new RequirementProxy(requirement));
-				}
 			}
 
 			public String getName() {
@@ -98,14 +108,6 @@ public class InterviewDto {
 
 			public void setName(String name) {
 				this.name = name;
-			}
-
-			public Set<RequirementProxy> getRequirements() {
-				return requirements;
-			}
-
-			public void setRequirements(Set<RequirementProxy> requirements) {
-				this.requirements = requirements;
 			}
 
 		}
@@ -120,7 +122,7 @@ public class InterviewDto {
 		private Date birthday;
 		private double salary;
 		private CandidateStateProxy candidateState;
-		private Set<AttachmentProxy> attachments;
+		private Set<AttachmentProxy> attachments = new HashSet<AttachmentProxy>();
 
 		public CandidateProxy(Candidate candidate) {
 			this.id = candidate.getId();
@@ -129,7 +131,8 @@ public class InterviewDto {
 			this.birthday = candidate.getBirthday();
 			this.salary = candidate.getSalary();
 			this.candidateState = new CandidateStateProxy(candidate.getCandidateState());
-			this.attachments = new AttachmentProxy(candidate.getAttachments()).getAttachments();
+			for (Attachment attachment : candidate.getAttachments())
+				attachments.add(new AttachmentProxy(attachment));
 		}
 
 		public Long getId() {
@@ -210,18 +213,10 @@ public class InterviewDto {
 
 			private String filePath;
 			private String attachmentType;
-			private Set<AttachmentProxy> attachments;
 
 			public AttachmentProxy(Attachment attachment) {
 				this.filePath = attachment.getFilePath();
 				this.attachmentType = attachment.getAttachmentType().name();
-			}
-
-			public AttachmentProxy(Set<Attachment> attachments) {
-				this.attachments = new HashSet<AttachmentProxy>();
-				for (Attachment attachment : attachments) {
-					this.attachments.add(new AttachmentProxy(attachment));
-				}
 			}
 
 			public String getFilePath() {
@@ -240,15 +235,8 @@ public class InterviewDto {
 				this.attachmentType = attachmentType;
 			}
 
-			public Set<AttachmentProxy> getAttachments() {
-				return attachments;
-			}
-
-			public void setAttachments(Set<AttachmentProxy> attachments) {
-				this.attachments = attachments;
-			}
-
 		}
+	
 	}
 
 }

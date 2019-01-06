@@ -1,4 +1,4 @@
-package by.security;
+package by.team34.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

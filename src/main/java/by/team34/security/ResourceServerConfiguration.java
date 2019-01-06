@@ -1,4 +1,4 @@
-package by.security;
+package by.team34.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,17 +24,17 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 		anonymous().disable()
 		.requestMatchers().antMatchers("/**")
 		.and().authorizeRequests()
-		.antMatchers("/user/**").access("hasRole('ADMIN')")
+		.antMatchers("/user/**").access("hasRole('Administrator')")
 		.and().authorizeRequests()
-		.antMatchers("/candidate/**").access("hasRole('ADMIN')")
+		.antMatchers("/candidate/**").access("hasRole('Administrator')")
 		.and().authorizeRequests()
-		.antMatchers("/vacancy/**").access("hasRole('ADMIN')")
+		.antMatchers("/vacancy/**").access("hasRole('Administrator')")
 		.and().authorizeRequests()
-		.antMatchers("/skill/**").access("hasRole('ADMIN')")
+		.antMatchers("/skill/**").access("hasRole('Administrator')")
 		.and().authorizeRequests()
-		.antMatchers("/interview/**").access("hasRole('ADMIN')")
+		.antMatchers("/interview/**").access("hasRole('Administrator')")
 		.and().authorizeRequests()
-		.antMatchers("/feedback/**").access("hasRole('ADMIN')")
+		.antMatchers("/feedback/**").access("hasRole('Administrator')")
 		.and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
 	}
 

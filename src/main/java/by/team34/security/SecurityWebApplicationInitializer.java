@@ -1,4 +1,4 @@
-package by.security;
+package by.team34.security;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 import org.springframework.stereotype.Component;

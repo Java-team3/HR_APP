@@ -17,11 +17,11 @@ public class CandidateDto {
 	private double salary;
 
 	private CandidateStateProxy candidateState;
-	private Set<AttachmentProxy> attachments;
+	private Set<AttachmentProxy> attachments = new HashSet<AttachmentProxy>();
 
 	// private Set<CandidateExperienceDto> experiences;
-	private Set<ContactDetailsProxy> contactDetails;
-	private Set<SkillProxy> skills;
+	private Set<ContactDetailsProxy> contactDetails = new HashSet<ContactDetailsProxy>();
+	private Set<SkillProxy> skills = new HashSet<SkillProxy>();
 
 	public CandidateDto(Candidate candidate) {
 		this.id = candidate.getId();
@@ -30,9 +30,12 @@ public class CandidateDto {
 		this.birthday = candidate.getBirthday();
 		this.salary = candidate.getSalary();
 		this.candidateState = new CandidateStateProxy(candidate.getCandidateState());
-		this.attachments = new AttachmentProxy(candidate.getAttachments()).getAttachments();
-		this.skills = new SkillProxy(candidate.getSkills()).getSkills();
-		this.contactDetails = new ContactDetailsProxy(candidate.getContactDetails()).getContacts();
+		for (Attachment at : candidate.getAttachments())
+			attachments.add(new AttachmentProxy(at));
+		for (Skill skill : candidate.getSkills())
+			skills.add(new SkillProxy(skill));
+		for (ContactDetails details : candidate.getContactDetails())
+			contactDetails.add(new ContactDetailsProxy(details));
 	}
 
 	public Long getId() {
@@ -129,18 +132,10 @@ public class CandidateDto {
 
 		private String filePath;
 		private String attachmentType;
-		private Set<AttachmentProxy> attachments;
 
 		public AttachmentProxy(Attachment attachment) {
 			this.filePath = attachment.getFilePath();
 			this.attachmentType = attachment.getAttachmentType().name();
-		}
-
-		public AttachmentProxy(Set<Attachment> attachments) {
-			this.attachments = new HashSet<AttachmentProxy>();
-			for (Attachment attachment : attachments) {
-				this.attachments.add(new AttachmentProxy(attachment));
-			}
 		}
 
 		public String getFilePath() {
@@ -161,10 +156,6 @@ public class CandidateDto {
 
 		public Set<AttachmentProxy> getAttachments() {
 			return attachments;
-		}
-
-		public void setAttachments(Set<AttachmentProxy> attachments) {
-			this.attachments = attachments;
 		}
 
 	}
@@ -193,32 +184,16 @@ public class CandidateDto {
 			this.name = name;
 		}
 
-		public Set<SkillProxy> getSkills() {
-			return skills;
-		}
-
-		public void setSkills(Set<SkillProxy> skills) {
-			this.skills = skills;
-		}
-
 	}
 
 	private class ContactDetailsProxy {
 
 		private String contactType;
 		private String contactDetails;
-		private Set<ContactDetailsProxy> contacts;
 
 		public ContactDetailsProxy(ContactDetails contacts) {
 			this.contactType = contacts.getContactType();
 			this.contactDetails = contacts.getContactDetails();
-		}
-
-		public ContactDetailsProxy(Set<ContactDetails> contacts) {
-			this.contacts = new HashSet<ContactDetailsProxy>();
-			for (ContactDetails contact : contacts) {
-				this.contacts.add(new ContactDetailsProxy(contact));
-			}
 		}
 
 		public String getContactType() {
@@ -235,14 +210,6 @@ public class CandidateDto {
 
 		public void setContactDetails(String contactDetails) {
 			this.contactDetails = contactDetails;
-		}
-
-		public Set<ContactDetailsProxy> getContacts() {
-			return contacts;
-		}
-
-		public void setContacts(Set<ContactDetailsProxy> contacts) {
-			this.contacts = contacts;
 		}
 
 	}

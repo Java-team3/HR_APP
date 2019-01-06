@@ -6,6 +6,7 @@ import java.util.Set;
 
 import by.team34.entity.Candidate;
 import by.team34.entity.CandidateFeedback;
+import by.team34.entity.CandidateState;
 import by.team34.entity.FeedbackState;
 import by.team34.entity.Interview;
 import by.team34.entity.Requirement;
@@ -33,8 +34,87 @@ public class FeedbackDto {
 	}
 
 	private class CandidateProxy {
+		
+		private Long id;
+		private String name;
+		private String surname;
+		private Date birthday;
+		private double salary;
 
+		private CandidateStateProxy candidateState;
+		
 		public CandidateProxy(Candidate candidate) {
+			this.id = candidate.getId();
+			this.name = candidate.getName();
+			this.surname = candidate.getSurname();
+			this.birthday = candidate.getBirthday();
+			this.salary = candidate.getSalary();
+			this.candidateState = new CandidateStateProxy(candidate.getCandidateState());
+		}
+		
+		public Long getId() {
+			return id;
+		}
+
+		public void setId(Long id) {
+			this.id = id;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public String getSurname() {
+			return surname;
+		}
+
+		public void setSurname(String surname) {
+			this.surname = surname;
+		}
+
+		public Date getBirthday() {
+			return birthday;
+		}
+
+		public void setBirthday(Date birthday) {
+			this.birthday = birthday;
+		}
+
+		public double getSalary() {
+			return salary;
+		}
+
+		public void setSalary(double salary) {
+			this.salary = salary;
+		}
+
+		public CandidateStateProxy getCandidateState() {
+			return candidateState;
+		}
+
+		public void setCandidateState(CandidateStateProxy candidateState) {
+			this.candidateState = candidateState;
+		}
+
+		private class CandidateStateProxy {
+
+			private String name;
+
+			public CandidateStateProxy(CandidateState state) {
+				this.name = state.getName();
+			}
+
+			public String getName() {
+				return name;
+			}
+
+			public void setName(String name) {
+				this.name = name;
+			}
 
 		}
 
@@ -61,14 +141,15 @@ public class FeedbackDto {
 			private String position;
 			private double salaryTo;
 			private double salaryFrom;
-			private Set<RequirementProxy> requirements;
+			private Set<RequirementProxy> requirements = new HashSet<RequirementProxy>();
 
 			public VacancyProxy(Vacancy vacancy) {
 				this.id = vacancy.getId();
 				this.position = vacancy.getPosition();
 				this.salaryFrom = vacancy.getSalaryFrom();
 				this.salaryTo = vacancy.getSalaryTo();
-				this.requirements = new RequirementProxy(vacancy.getRequirements()).getRequirements();
+				for (Requirement requirement : vacancy.getRequirements())
+					requirements.add(new RequirementProxy(requirement));
 			}
 
 			public Long getId() {
@@ -114,17 +195,9 @@ public class FeedbackDto {
 			private class RequirementProxy {
 
 				private String name;
-				private Set<RequirementProxy> requirements;
 
 				public RequirementProxy(Requirement requirement) {
 					this.name = requirement.getName();
-				}
-
-				public RequirementProxy(Set<Requirement> requirements) {
-					this.requirements = new HashSet<RequirementProxy>();
-					for (Requirement req : requirements) {
-						this.requirements.add(new RequirementProxy(req));
-					}
 				}
 
 				public String getName() {
@@ -133,14 +206,6 @@ public class FeedbackDto {
 
 				public void setName(String name) {
 					this.name = name;
-				}
-
-				public Set<RequirementProxy> getRequirements() {
-					return requirements;
-				}
-
-				public void setRequirements(Set<RequirementProxy> requirements) {
-					this.requirements = requirements;
 				}
 
 			}
@@ -157,7 +222,7 @@ public class FeedbackDto {
 		private String userState;
 		private String email;
 		private String password;
-		private Set<RoleProxy> roles;
+		private Set<RoleProxy> roles = new HashSet<RoleProxy>();
 
 		public InterviewerProxy(User interviewer) {
 			this.id = interviewer.getId();
@@ -166,7 +231,8 @@ public class FeedbackDto {
 			this.userState = interviewer.getUserState().name();
 			this.email = interviewer.getEmail();
 			this.password = interviewer.getPassword();
-			this.roles = new RoleProxy(interviewer.getRoles()).getRoles();
+			for (Role role : interviewer.getRoles())
+				roles.add(new RoleProxy(role));
 		}
 
 		public Long getId() {
@@ -236,13 +302,6 @@ public class FeedbackDto {
 				this.name = role.getName();
 			}
 
-			public RoleProxy(Set<Role> roles) {
-				this.roles = new HashSet<RoleProxy>();
-				for (Role role : roles) {
-					this.roles.add(new RoleProxy(role));
-				}
-			}
-
 			public Long getId() {
 				return id;
 			}
@@ -257,14 +316,6 @@ public class FeedbackDto {
 
 			public void setName(String name) {
 				this.name = name;
-			}
-
-			public Set<RoleProxy> getRoles() {
-				return roles;
-			}
-
-			public void setRoles(Set<RoleProxy> roles) {
-				this.roles = roles;
 			}
 
 		}
